@@ -2846,9 +2846,9 @@ function practiceStrip(u){
   const MB='https://www.mathsblueprint.co.uk/a-level/ocr-mei/';
   const row=(lbl,sub,body)=>`<div class="tb-row"><div class="tb-l"><b>${lbl}</b>${sub?` <small>${sub}</small>`:''}</div><div class="xb">${body}</div></div>`;
   let h='<section class="testbox" aria-label="Test yourself on this chapter"><h3>Learnt this chapter? Test yourself</h3>';
-  if((u.x.ex||[]).length) h+=row('Exam questions',course==='ib'?'IB-style, with solutions':(String(u.id).startsWith('fpm')?'full papers, with mark schemes':'with mark schemes'),u.x.ex.map(e=>`<a class="btn gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`).join(''));
+  if((u.x.ex||[]).length) h+=row(course==='alevel'&&!String(u.id).startsWith('fpm')?'Current-syllabus exam questions':'Exam questions',course==='ib'?'IB-style, with solutions':(String(u.id).startsWith('fpm')?'full papers, with mark schemes':(course==='alevel'?'current MEI course, with mark schemes':'with mark schemes')),u.x.ex.map(e=>`<a class="btn gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`).join(''));
   const qn=course==='alevel'?QBANK[u.id]:0;
-  if(qn) h+=row('Past paper questions',`${qn} real MEI questions, one at a time`,`<a class="btn gold" href="questions.html#${u.id}">Practise past questions (${qn}) &rarr;</a>`);
+  if(qn) h+=row('Old-syllabus MEI questions',`${qn} questions from the old MEI papers (before 2018), one at a time`,`<a class="btn gold" href="questions.html#${u.id}">Practise old MEI questions (${qn}) &rarr;</a>`);
   if(u.x.pdf) h+=row('Exercise sheets','answers at the back',`<a class="btn primary" href="pdf/${u.x.pdf}" target="_blank" rel="noopener">Exercise sheets (PDF)</a>`);
   return h+'</section>';
 }
