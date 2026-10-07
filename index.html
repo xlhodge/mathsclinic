@@ -409,6 +409,7 @@ header.site h1{margin:0;color:#F3F5F8;font-size:1.55rem;line-height:1.1}
 header.site h1 span{background:none;color:#F7DC5C;padding:0}
 header.site .byline{margin:0;color:#B7C0CE;font-size:.9rem;padding-left:14px;border-left:1px solid rgba(255,255,255,.18);letter-spacing:.02em}
 @media (max-width:720px){header.site{gap:10px}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}header.site .byline{font-size:.8rem;padding-left:10px}}
+
 </style>
 </head>
 <body>
@@ -2824,12 +2825,16 @@ function howto(){
   return `<section class="howto" aria-label="How to use this page"><button class="x" id="hidehow" aria-label="Hide these tips">×</button><h2>How to revise with this page</h2><ol>${steps}</ol>${al?`<p class="hownote">Keep a revision exercise book: head each session with the date and section (e.g. <i>2.1 Radians</i>), and use the back pages to list things you got wrong.</p>`:''}</section>`;
 }
 
+/* past paper question bank (questions.html): number of questions per chapter */
+const QBANK={'r-5':27,'r-9':24};
 function practiceStrip(u){
-  if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length)) return '';
+  if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!(course==='alevel'&&QBANK[u.id]))) return '';
   const MB='https://www.mathsblueprint.co.uk/a-level/ocr-mei/';
   const row=(lbl,sub,body)=>`<div class="tb-row"><div class="tb-l"><b>${lbl}</b>${sub?` <small>${sub}</small>`:''}</div><div class="xb">${body}</div></div>`;
   let h='<section class="testbox" aria-label="Test yourself on this chapter"><h3>Learnt this chapter? Test yourself</h3>';
   if((u.x.ex||[]).length) h+=row('Exam questions',course==='ib'?'IB-style, with solutions':(String(u.id).startsWith('fpm')?'full papers, with mark schemes':'with mark schemes'),u.x.ex.map(e=>`<a class="btn gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`).join(''));
+  const qn=course==='alevel'?QBANK[u.id]:0;
+  if(qn) h+=row('Past paper questions',`${qn} real MEI questions, one at a time`,`<a class="btn gold" href="questions.html#${u.id}">Practise past questions (${qn}) &rarr;</a>`);
   if(u.x.pdf) h+=row('Exercise sheets','answers at the back',`<a class="btn primary" href="pdf/${u.x.pdf}" target="_blank" rel="noopener">Exercise sheets (PDF)</a>`);
   return h+'</section>';
 }

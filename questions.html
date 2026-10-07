@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Past exam questions · Maths Clinic</title>
+<meta name="description" content="Past MEI exam questions sorted by chapter, one at a time, with mark schemes. Maths Clinic, by Mr Hodkinson.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F7F4;--surface:#FFFFFF;--ink:#18212F;--muted:#5A6474;--line:#DEE2E6;--accent:#2946C4;--accent-ink:#FFFFFF;--accent-soft:#E7EBFB;--hl:#F7DC5C;--hl-ink:#3A3000;--g:#2E9D5B;--paper:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11151C;--surface:#1A2029;--ink:#E7EAF0;--muted:#9AA3B2;--line:#2C3441;--accent:#8EA3FF;--accent-ink:#0E1430;--accent-soft:#232C4A;--hl:#C9AE2E;--hl-ink:#1D1800;--g:#5CC88A;--paper:#F3F3EF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11151C;--surface:#1A2029;--ink:#E7EAF0;--muted:#9AA3B2;--line:#2C3441;--accent:#8EA3FF;--accent-ink:#0E1430;--accent-soft:#232C4A;--hl:#C9AE2E;--hl-ink:#1D1800;--g:#5CC88A;--paper:#F3F3EF;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;padding-inline:16px}
+a{color:var(--accent)}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+header.site{margin:0 -16px;padding:12px max(16px,calc((100vw - 1180px)/2));background:#18212F;border-bottom:3px solid #F7DC5C;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) header.site{background:#0B0F15}}
+header.site .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none}
+header.site .logo{width:42px;height:42px;border-radius:10px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+header.site h1{margin:0;color:#F3F5F8;font-size:1.55rem;line-height:1.1}
+header.site h1 span{color:#F7DC5C}
+header.site .byline{margin:0;color:#B7C0CE;font-size:.9rem;padding-left:14px;border-left:1px solid rgba(255,255,255,.18)}
+main{max-width:1000px;margin:0 auto;padding-block:22px 60px}
+.crumbs{margin:0 0 14px;font-size:.92rem}
+.crumbs a{font-weight:700;text-decoration:none}
+.kicker{margin:0;color:var(--muted);font-size:.9rem}
+h2{margin:2px 0 4px;font-size:1.7rem;line-height:1.15}
+.lead{margin:0 0 16px;color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
+select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-width:0;max-width:100%}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:3px}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:7px;cursor:pointer;font-weight:700;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.prog{margin-left:auto;font-size:.88rem;color:var(--muted)}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 16px}
+.dots button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:.8rem;font-weight:700;color:var(--muted);padding:0}
+.dots button.done{background:color-mix(in srgb,var(--g) 18%,var(--surface));border-color:var(--g);color:var(--g)}
+.dots button[aria-current="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.chead{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.chead b{font-size:1.1rem}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.85rem;color:var(--muted)}
+.pill{font-size:.75rem;font-weight:700;border-radius:99px;padding:1px 9px;border:1px solid var(--line)}
+.pill.long{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));color:var(--accent);background:var(--accent-soft)}
+.pill.marks{border-color:color-mix(in srgb,var(--hl) 80%,var(--line));background:color-mix(in srgb,var(--hl) 25%,var(--surface));color:var(--ink)}
+.paper{background:var(--paper);padding:14px;overflow-x:auto}
+.zoom{display:none;margin:6px 0 0;text-align:center;font-size:.8rem;color:#5A6474}
+.paper img{display:block;max-width:100%;height:auto;margin:0 auto}
+.paper.ms img{min-width:640px;max-width:none;width:100%}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 18px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:9px;cursor:pointer;text-decoration:none;color:var(--ink);font-weight:700;font-size:.92rem}
+.btn:hover{border-color:var(--accent)}
+.btn.gold{background:var(--hl);border-color:color-mix(in srgb,var(--hl) 70%,var(--ink));color:var(--hl-ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.4;cursor:default}
+.done-l{display:inline-flex;align-items:center;gap:8px;font-weight:700;cursor:pointer;margin-left:auto}
+.done-l input{width:20px;height:20px;accent-color:var(--g)}
+.mshead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 18px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--hl) 14%,var(--surface));font-weight:700}
+.mshead a{font-weight:400;font-size:.85rem}
+.tip{margin:14px 0 0;color:var(--muted);font-size:.9rem}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+footer{max-width:1000px;margin:0 auto;border-top:1px solid var(--line);padding-block:16px 30px;color:var(--muted);font-size:.82rem}
+@media (max-width:640px){.zoom{display:block}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}h2{font-size:1.4rem}.prog{margin-left:0;flex:1 1 100%}.done-l{margin-left:0;flex:1 1 100%}.acts .btn{flex:1 1 auto;justify-content:center}.paper{padding:8px}}
+</style>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="./" aria-label="Maths Clinic home"><svg class="logo" aria-hidden="true" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#18212F"/><path d="M8 34H12L16 18L21 42L26 14L31 34H41M55 23H41V45H55" fill="none" stroke="#F7DC5C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><h1>Maths <span>Clinic</span></h1></a>
+  <p class="byline">by Mr Hodkinson</p>
+</header>
+<main>
+  <p class="crumbs"><a id="back" href="./">&larr; Back to the chapter</a></p>
+  <p class="kicker">A Level · Past exam questions</p>
+  <h2 id="title">Past exam questions</h2>
+  <p class="lead">Real questions from old MEI papers. Do each one on paper, then check it against the mark scheme.</p>
+  <div class="bar">
+    <select id="ch" aria-label="Chapter"></select>
+    <div class="seg" role="group" aria-label="Question length"><button data-f="all" aria-pressed="true">All</button><button data-f="short" aria-pressed="false">Short</button><button data-f="long" aria-pressed="false">Long</button></div>
+    <span class="prog" id="prog"></span>
+  </div>
+  <div class="dots" id="dots" aria-label="Jump to a question"></div>
+  <section class="card" id="card" aria-live="polite"></section>
+  <p class="tip">Short questions are worth up to about 8 marks. Long ones are the big 15 to 18 mark questions from the end of the paper, and some parts use other topics too.</p>
+</main>
+<footer>Questions and mark schemes © OCR, from MEI A Level Mathematics papers (C3, 4753), reproduced for revision. Your ticks are stored only in this browser.</footer>
+<script>
+const CH={"r-5": {"name": "Chapter 5: Differentiation", "short": "Chapter 5"}, "r-9": {"name": "Chapter 9: Further differentiation", "short": "Chapter 9"}};
+const Q=[{"id":"c3-2018june-q1","src":"C3 June 2018","q":1,"m":6,"ch":["r-5","r-9"],"long":false,"t":"Implicit differentiation and rates of change","qw":1118,"qh":732,"mw":1649,"mh":632},{"id":"c3-2018june-q4","src":"C3 June 2018","q":4,"m":6,"ch":["r-5","r-9"],"long":false,"t":"Product rule: maximum point","qw":1117,"qh":589,"mw":1649,"mh":287},{"id":"c3-2017june-q1","src":"C3 June 2017","q":1,"m":3,"ch":["r-5"],"long":false,"t":"Chain rule","qw":1115,"qh":77,"mw":1632,"mh":253},{"id":"c3-2017june-q4","src":"C3 June 2017","q":4,"m":5,"ch":["r-9"],"long":false,"t":"Implicit differentiation with fractional powers","qw":1117,"qh":173,"mw":1632,"mh":304},{"id":"c3-2017june-q7","src":"C3 June 2017","q":7,"m":7,"ch":["r-5","r-9"],"long":false,"t":"dx/dy and rates of change with arcsin","qw":1116,"qh":237,"mw":1632,"mh":930},{"id":"c3-2016june-q5","src":"C3 June 2016","q":5,"m":7,"ch":["r-5"],"long":false,"t":"Connected rates of change: a pile of grain","qw":1118,"qh":315,"mw":1671,"mh":328},{"id":"c3-2016june-q6","src":"C3 June 2016","q":6,"m":8,"ch":["r-9"],"long":false,"t":"Implicit differentiation with sin 2y","qw":1118,"qh":749,"mw":1671,"mh":391},{"id":"c3-2015june-q1","src":"C3 June 2015","q":1,"m":6,"ch":["r-5","r-9"],"long":false,"t":"Product rule: turning point of e²ˣ cos x","qw":1115,"qh":640,"mw":1633,"mh":410},{"id":"c3-2015june-q4","src":"C3 June 2015","q":4,"m":5,"ch":["r-5"],"long":false,"t":"Connected rates of change: a cone","qw":1119,"qh":553,"mw":1633,"mh":486},{"id":"c3-2015june-q5","src":"C3 June 2015","q":5,"m":6,"ch":["r-9"],"long":false,"t":"Implicit differentiation with ln y","qw":1116,"qh":112,"mw":1633,"mh":505},{"id":"c3-2014june-q2","src":"C3 June 2014","q":2,"m":5,"ch":["r-5","r-9"],"long":false,"t":"Chain rule with ln(1 − cos 2x)","qw":1117,"qh":57,"mw":1632,"mh":376},{"id":"c3-2014june-q5","src":"C3 June 2014","q":5,"m":5,"ch":["r-5"],"long":false,"t":"Connected rates of change: a balloon","qw":1118,"qh":82,"mw":1632,"mh":271},{"id":"c3-2013june-q3","src":"C3 June 2013","q":3,"m":8,"ch":["r-9"],"long":false,"t":"Gradient of an inverse function (arcsin)","qw":1117,"qh":802,"mw":1579,"mh":562},{"id":"c3-2013june-q4","src":"C3 June 2013","q":4,"m":5,"ch":["r-5"],"long":false,"t":"Connected rates of change: water in a bowl","qw":1119,"qh":496,"mw":1579,"mh":266},{"id":"c3-2013june-q5","src":"C3 June 2013","q":5,"m":4,"ch":["r-9"],"long":false,"t":"Differentiating ln using the laws of logs","qw":1116,"qh":73,"mw":1579,"mh":381},{"id":"c3-2013jan-q1","src":"C3 Jan 2013","q":1,"m":6,"ch":["r-5","r-9"],"long":false,"t":"Product rule: stationary point of e⁻ˣ sin 2x","qw":1115,"qh":118,"mw":1632,"mh":357},{"id":"c3-2013jan-q2","src":"C3 Jan 2013","q":2,"m":6,"ch":["r-9"],"long":false,"t":"Implicit differentiation: stationary points","qw":1120,"qh":199,"mw":1632,"mh":458},{"id":"c3-2013jan-q5","src":"C3 Jan 2013","q":5,"m":5,"ch":["r-5"],"long":false,"t":"Connected rates of change: force and velocity","qw":1116,"qh":220,"mw":1632,"mh":375},{"id":"c3-2012june-q3","src":"C3 June 2012","q":3,"m":4,"ch":["r-9"],"long":false,"t":"Implicit differentiation with eʸ","qw":1117,"qh":56,"mw":1664,"mh":358},{"id":"c3-2012june-q6","src":"C3 June 2012","q":6,"m":8,"ch":["r-9"],"long":false,"t":"Gradient of an inverse function (arcsin)","qw":1118,"qh":950,"mw":1632,"mh":450},{"id":"c3-2012jan-q1","src":"C3 Jan 2012","q":1,"m":3,"ch":["r-5","r-9"],"long":false,"t":"Product rule with tan 2x","qw":1115,"qh":55,"mw":1626,"mh":464},{"id":"c3-2012jan-q6","src":"C3 Jan 2012","q":6,"m":8,"ch":["r-5"],"long":false,"t":"Rates of change: an oil slick","qw":1119,"qh":229,"mw":1626,"mh":334},{"id":"c3-2012jan-q7","src":"C3 Jan 2012","q":7,"m":8,"ch":["r-9"],"long":false,"t":"Implicit differentiation: finding a turning point","qw":1116,"qh":625,"mw":1626,"mh":459},{"id":"c3-2011june-q3","src":"C3 June 2011","q":3,"m":8,"ch":["r-5"],"long":false,"t":"Quotient rule with ln x, then integration by parts","qw":1118,"qh":160,"mw":1646,"mh":649},{"id":"c3-2011june-q6","src":"C3 June 2011","q":6,"m":6,"ch":["r-9"],"long":false,"t":"Implicit differentiation with trig","qw":1118,"qh":250,"mw":1589,"mh":340},{"id":"c3-2018june-q8","src":"C3 June 2018","q":8,"m":18,"ch":["r-5"],"long":true,"t":"Quotient rule tangent, area by substitution","qw":1118,"qh":833,"mw":1649,"mh":1757},{"id":"c3-2017june-q8","src":"C3 June 2017","q":8,"m":18,"ch":["r-5"],"long":true,"t":"Quotient rule with trig, area by substitution","qw":1118,"qh":803,"mw":1632,"mh":1050},{"id":"c3-2017june-q9","src":"C3 June 2017","q":9,"m":18,"ch":["r-5"],"long":true,"t":"Stationary points, odd function, area","qw":1119,"qh":458,"mw":1632,"mh":1011},{"id":"c3-2016june-q8","src":"C3 June 2016","q":8,"m":18,"ch":["r-5"],"long":true,"t":"Quotient rule tangent, area by substitution","qw":1118,"qh":835,"mw":1671,"mh":1256},{"id":"c3-2016june-q9","src":"C3 June 2016","q":9,"m":18,"ch":["r-9"],"long":true,"t":"Turning point with e²ˣ, area, even function","qw":1119,"qh":1118,"mw":1671,"mh":966},{"id":"c3-2015june-q8","src":"C3 June 2015","q":8,"m":18,"ch":["r-5"],"long":true,"t":"Second derivative, maximum point, area","qw":1119,"qh":1192,"mw":1633,"mh":1738},{"id":"c3-2015june-q9","src":"C3 June 2015","q":9,"m":18,"ch":["r-9"],"long":true,"t":"Chain rule turning point, area, inverse","qw":1120,"qh":1166,"mw":1633,"mh":1622},{"id":"c3-2014june-q8","src":"C3 June 2014","q":8,"m":18,"ch":["r-5"],"long":true,"t":"Quotient rule, odd function, area, implicit","qw":1118,"qh":859,"mw":1632,"mh":1274},{"id":"c3-2014june-q9","src":"C3 June 2014","q":9,"m":18,"ch":["r-5"],"long":true,"t":"Product rule tangent, area between curves","qw":1119,"qh":750,"mw":1632,"mh":1466},{"id":"c3-2013june-q8","src":"C3 June 2013","q":8,"m":18,"ch":["r-5"],"long":true,"t":"Product rule turning point, area, transformation","qw":1118,"qh":1046,"mw":1579,"mh":1340},{"id":"c3-2013june-q9","src":"C3 June 2013","q":9,"m":18,"ch":["r-5"],"long":true,"t":"Quotient rule turning point, area by substitution","qw":1119,"qh":1016,"mw":1579,"mh":1406},{"id":"c3-2013jan-q8","src":"C3 Jan 2013","q":8,"m":17,"ch":["r-9"],"long":true,"t":"Quotient rule with trig, transformations, area","qw":1116,"qh":1011,"mw":1632,"mh":1617},{"id":"c3-2012june-q8","src":"C3 June 2012","q":8,"m":18,"ch":["r-5","r-9"],"long":true,"t":"Turning points of x sin 2x, tangent, area","qw":1119,"qh":959,"mw":1664,"mh":1000},{"id":"c3-2012june-q9","src":"C3 June 2012","q":9,"m":18,"ch":["r-5"],"long":true,"t":"Quotient rule turning point, transformations, area","qw":1120,"qh":1248,"mw":1664,"mh":997},{"id":"c3-2012jan-q8","src":"C3 Jan 2012","q":8,"m":18,"ch":["r-5"],"long":true,"t":"Quotient rule with a square root, then area","qw":1118,"qh":872,"mw":1626,"mh":982},{"id":"c3-2012jan-q9","src":"C3 Jan 2012","q":9,"m":18,"ch":["r-9"],"long":true,"t":"Gradient of a ln curve, inverse function, area","qw":1117,"qh":1200,"mw":1626,"mh":1153},{"id":"c3-2011june-q8","src":"C3 June 2011","q":8,"m":18,"ch":["r-9"],"long":true,"t":"Even function, f′(x), then area by substitution","qw":1119,"qh":870,"mw":1645,"mh":1015},{"id":"c3-2011june-q9","src":"C3 June 2011","q":9,"m":18,"ch":["r-9"],"long":true,"t":"Gradient of a sine curve, inverse function, area","qw":1119,"qh":955,"mw":1625,"mh":931}];
+const $=s=>document.querySelector(s);
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch(e){}}};
+let ch=Object.keys(CH)[0], filt='all', i=0, showMs=false;
+function list(){ return Q.filter(q=>q.ch.includes(ch)&&(filt==='all'||(filt==='long')===q.long)); }
+function isDone(q){ return store.get('qdone:'+q.id)==='1'; }
+function read(){ const h=decodeURIComponent(location.hash.slice(1)).split('/'); if(CH[h[0]]) ch=h[0]; if(['all','short','long'].includes(h[2])) filt=h[2]; const n=parseInt(h[1],10); i=n>=1?n-1:0; }
+function write(){ history.replaceState(null,'',`#${ch}/${i+1}${filt!=='all'?'/'+filt:''}`); }
+function render(){
+  const L=list(); if(i>=L.length) i=Math.max(0,L.length-1);
+  $('#ch').value=ch; $('#title').textContent=CH[ch].name;
+  $('#back').href='./#alevel-'+ch; $('#back').textContent='← Back to '+CH[ch].short;
+  document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===filt));
+  const done=L.filter(isDone).length; $('#prog').textContent=L.length?`${done} of ${L.length} done`:'';
+  $('#dots').innerHTML=L.map((q,k)=>`<button class="${isDone(q)?'done':''}" aria-current="${k===i}" data-k="${k}" title="${q.src} Q${q.q}">${k+1}</button>`).join('');
+  if(!L.length){ $('#card').innerHTML='<p class="empty">No questions of that length in this chapter yet.</p>'; write(); return; }
+  const q=L[i];
+  $('#card').innerHTML=`<div class="chead"><b>Question ${i+1} of ${L.length}: ${q.t}</b><span class="meta"><span>MEI ${q.src}, Q${q.q}</span><span class="pill marks">${q.m} marks</span>${q.long?'<span class="pill long">Long</span>':''}</span></div>
+  <div class="paper"><a href="q/${q.id}.png" target="_blank" rel="noopener" title="Open full size"><img src="q/${q.id}.png" width="${q.qw}" height="${q.qh}" alt="MEI ${q.src} question ${q.q}: ${q.t}"></a><p class="zoom">Tap the question to open it full size</p></div>
+  ${showMs?`<div class="mshead"><span>Mark scheme</span><a href="q/${q.id}-ms.png" target="_blank" rel="noopener">Open full size &#8599;</a></div><div class="paper ms"><img src="q/${q.id}-ms.png" width="${q.mw}" height="${q.mh}" alt="Mark scheme for MEI ${q.src} question ${q.q}"></div>`:''}
+  <div class="acts"><button class="btn" id="prev" ${i?'':'disabled'}>&larr; Previous</button><button class="btn gold" id="ms">${showMs?'Hide mark scheme':'Show mark scheme'}</button><button class="btn" id="next" ${i<L.length-1?'':'disabled'}>Next &rarr;</button><button class="btn" id="rand">Random</button>
+  <label class="done-l"><input type="checkbox" id="done" ${isDone(q)?'checked':''}> I've done this one</label></div>`;
+  write();
+}
+function go(k){ i=k; showMs=false; render(); $('#card').scrollIntoView({block:'nearest'}); }
+$('#ch').innerHTML=Object.entries(CH).map(([k,v])=>`<option value="${k}">${v.name} (${Q.filter(q=>q.ch.includes(k)).length})</option>`).join('');
+$('#ch').addEventListener('change',e=>{ch=e.target.value;i=0;showMs=false;render();});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,[data-k]'); if(!t) return;
+  if(t.dataset.f){ filt=t.dataset.f; i=0; showMs=false; render(); }
+  else if(t.dataset.k!==undefined) go(+t.dataset.k);
+  else if(t.id==='prev') go(i-1);
+  else if(t.id==='next') go(i+1);
+  else if(t.id==='ms'){ showMs=!showMs; render(); }
+  else if(t.id==='rand'){ const L=list(); if(L.length>1){ let k; do{k=Math.floor(Math.random()*L.length);}while(k===i); go(k);} }
+});
+document.addEventListener('change',e=>{ if(e.target.id==='done'){ const q=list()[i]; store.set('qdone:'+q.id,e.target.checked?'1':''); render(); } });
+document.addEventListener('keydown',e=>{ if(e.target.matches('input,select')) return; const L=list(); if(e.key==='ArrowRight'&&i<L.length-1) go(i+1); if(e.key==='ArrowLeft'&&i>0) go(i-1); });
+window.addEventListener('hashchange',()=>{read();render();});
+read(); render();
+</script>
+</body>
+</html>
