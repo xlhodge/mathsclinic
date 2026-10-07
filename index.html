@@ -358,6 +358,46 @@ nav .shtag{font-size:.64rem;font-weight:700;color:var(--accent);border:1px solid
 .pprow p{margin:0;color:var(--muted);font-size:.85rem}
 @media (max-width:720px){.pprow{grid-template-columns:minmax(0,1fr);gap:6px}}
 .ccard .board{flex:1 1 100%;margin:2px 0 0;font-size:.82rem;color:var(--muted)}
+/* ===== home page polish (Oct 2026) ===== */
+:root{--hero:#18212F;--hero-ink:#F3F5F8;--hero-mut:#B7C0CE;--gold:#F7DC5C}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--hero:#0B0F15}}
+:root[data-theme="dark"]{--hero:#0B0F15}
+.home{max-width:none}
+.hero.hero2{position:relative;overflow:hidden;background:var(--hero);color:var(--hero-ink);border:1px solid color-mix(in srgb,var(--hero) 70%,var(--line));border-radius:20px;padding:34px 34px 28px;margin:0 0 34px;
+  background-image:radial-gradient(circle at 88% 0%,color-mix(in srgb,var(--gold) 16%,transparent),transparent 45%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:auto,22px 22px,22px 22px}
+.hero2 .ecg{position:absolute;right:-10px;top:18px;width:min(48%,560px);height:120px;color:var(--gold);opacity:.22;pointer-events:none}
+.hero2 .eyebrow{position:relative;margin:0 0 8px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.hero2 .lead{position:relative;color:var(--hero-ink);font-size:clamp(1.45rem,3.2vw,2.15rem);line-height:1.2;max-width:24ch;margin:0 0 24px;text-wrap:balance}
+.hero2 .lead em{font-style:normal;color:var(--gold)}
+.hero2 .continue{position:relative;background:var(--gold);border-color:var(--gold);color:#2A2300;box-shadow:0 3px 0 #B89A1E;max-width:640px}
+.hero2 .continue:hover{filter:brightness(1.05)}
+.hero2 .how3{position:relative}
+.hero2 .how3 li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);color:var(--hero-mut);padding:14px}
+.hero2 .how3 b{color:var(--hero-ink)}
+.hero2 .how3 .n2{background:#5B78F0;color:#fff}
+.steph.sect{font-size:1.3rem;margin:0 0 14px}
+.courses{gap:18px}
+.ccard{border-radius:16px;padding:0 0 16px;overflow:hidden;border-top:0;box-shadow:0 1px 2px rgba(24,33,47,.04),0 4px 14px rgba(24,33,47,.04);transition:box-shadow .2s,transform .2s}
+.ccard:hover{box-shadow:0 2px 4px rgba(24,33,47,.06),0 10px 28px rgba(24,33,47,.09);transform:translateY(-2px)}
+.ccard .chead{margin:0 0 14px;padding:16px 20px 12px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 14%,var(--surface)),color-mix(in srgb,var(--c) 4%,var(--surface)));border-bottom:1px solid color-mix(in srgb,var(--c) 22%,var(--line));border-top:6px solid var(--c)}
+.ccard h3{font-size:1.4rem}
+.ccard .ages{background:var(--surface)}
+.ccard .years{padding:0 20px}
+.ccard .yr{background:var(--surface);border-left:4px solid color-mix(in srgb,var(--c) 45%,var(--line));transition:border-color .15s,background .15s,color .15s}
+.ccard .yrg{background:var(--bg)}
+.ccard a.yr:hover{border-left-color:var(--c)}
+.ccard a.yr span:not(.yname):not(.prog3){transition:transform .15s}
+.ccard a.yr:hover > span:nth-child(2){transform:translateX(3px);color:var(--c)}
+.ppsec{border-radius:16px;border:1px solid color-mix(in srgb,var(--hl) 70%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--hl) 12%,var(--surface)),var(--surface) 140px)}
+.ppsec .steph{font-size:1.3rem}
+@media (max-width:720px){
+  .hero.hero2{padding:22px 18px 18px;border-radius:16px}
+  .hero2 .ecg{width:70%;opacity:.14;top:6px}
+  .ccard .chead{padding:14px 16px 10px}.ccard .years{padding:0 16px}
+}
+@media (prefers-reduced-motion:reduce){.ccard,.ccard .yr,.ccard a.yr span{transition:none}.ccard:hover{transform:none}}
+
 </style>
 </head>
 <body>
@@ -2825,7 +2865,8 @@ function renderHome(){
     const meta=(s.r+s.a+s.g)?`${s.g} of ${s.t} topics confident so far`:'Pick up your revision';
     cont=`<a class="continue" href="#${esc(last)}"><span>Carry on where you left off: <b>${esc(C[k].label)} · ${esc(b)}</b><span class="cmeta">${meta}</span></span><span class="arrow" aria-hidden="true">&rarr;</span></a>`; } }
   const how=`<ol class="how3"><li><span class="n n1">1</span><span><b>Watch</b>a short video if the topic is new or you are stuck</span></li><li><span class="n n2">2</span><span><b>Practise</b>the Dr Frost questions, full working in your book</span></li><li><span class="n n3">3</span><span><b>Rate</b>each topic so you know what to revisit</span></li></ol>`;
-  let h=`<div class="home"><section class="hero"><p class="lead">Videos, practice questions and exam questions for every unit of your maths course.</p>${cont}${how}</section><h2 class="steph">Pick your course and year</h2><div class="courses">`;
+  const ecg=`<svg class="ecg" aria-hidden="true" viewBox="0 0 600 120" preserveAspectRatio="none"><path d="M0 70H170L190 70L205 30L225 105L245 15L265 70H330L345 55L360 70H600" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  let h=`<div class="home"><section class="hero hero2">${ecg}<p class="eyebrow">Free revision for Stonyhurst mathematicians</p><p class="lead">Videos, practice and exam questions for <em>every unit</em> of your maths course.</p>${cont}${how}</section><h2 class="steph sect">Pick your course and year</h2><div class="courses">`;
   DATA.forEach(c=>{
     const tot=blockStats(c.key), rated=tot.r+tot.a+tot.g;
     h+=`<section class="ccard c-${esc(c.key)}"><div class="chead"><h3>${esc(c.label)}<span class="ages">${AGES[c.key]||''}</span></h3>${ctot(tot)}${BOARDS[c.key]?`<p class="board">${BOARDS[c.key]}</p>`:''}</div><div class="years">`+YGROUPS(c.key).map(g=>{
