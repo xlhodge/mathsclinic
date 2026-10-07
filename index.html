@@ -410,6 +410,20 @@ header.site h1 span{background:none;color:#F7DC5C;padding:0}
 header.site .byline{margin:0;color:#B7C0CE;font-size:.9rem;padding-left:14px;border-left:1px solid rgba(255,255,255,.18);letter-spacing:.02em}
 @media (max-width:720px){header.site{gap:10px}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}header.site .byline{font-size:.8rem;padding-left:10px}}
 
+
+/* ===== compact welcome box ===== */
+.hero.hero2{padding:18px 22px;margin:0 0 24px;border-top-width:3px;border-radius:14px}
+.hero2 .ecg{width:min(34%,360px);height:70px;top:8px;opacity:.28}
+.hero2 .eyebrow{font-size:.7rem;margin:0 0 4px}
+.hero2 .lead{font-size:clamp(1.1rem,2vw,1.35rem);max-width:none;margin:0 0 12px}
+.hero2 .continue{padding:9px 14px;margin:0 0 12px;font-size:.95rem;box-shadow:0 2px 0 #C9A400}
+.hero2 .continue .cmeta{display:none}
+.hero2 .steps{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0;font-size:.88rem;color:var(--muted)}
+.hero2 .steps b{color:var(--ink)}
+.hero2 .steps i{font-style:normal;display:inline-grid;place-items:center;width:1.5em;height:1.5em;border-radius:50%;font-size:.75rem;font-weight:700;color:#fff;margin-right:5px}
+.hero2 .steps .n1{background:var(--vid)}.hero2 .steps .n2{background:var(--accent);color:var(--accent-ink)}.hero2 .steps .n3{background:linear-gradient(135deg,var(--r) 0 33%,var(--a) 33% 66%,var(--g) 66%)}
+.hero2 .steps .ar{color:var(--line)}
+@media (max-width:720px){.hero.hero2{padding:14px 16px}.hero2 .steps .ar{display:none}.hero2 .ecg{display:none}}
 </style>
 </head>
 <body>
@@ -2880,7 +2894,7 @@ function renderHome(){
   if(last){ const [k,n]=last.split(':'); const b=C[k]&&BLOCKS(k)[n-1]; if(b){ const s=blockStats(k,b);
     const meta=(s.r+s.a+s.g)?`${s.g} of ${s.t} topics confident so far`:'Pick up your revision';
     cont=`<a class="continue" href="#${esc(last)}"><span>Carry on where you left off: <b>${esc(C[k].label)} · ${esc(b)}</b><span class="cmeta">${meta}</span></span><span class="arrow" aria-hidden="true">&rarr;</span></a>`; } }
-  const how=`<ol class="how3"><li><span class="n n1">1</span><span><b>Watch</b>a short video if the topic is new or you are stuck</span></li><li><span class="n n2">2</span><span><b>Practise</b>the Dr Frost questions, full working in your book</span></li><li><span class="n n3">3</span><span><b>Rate</b>each topic so you know what to revisit</span></li></ol>`;
+  const how=`<p class="steps"><span><i class="n1">1</i><b>Watch</b> a video</span><span class="ar">&rarr;</span><span><i class="n2">2</i><b>Practise</b> the questions</span><span class="ar">&rarr;</span><span><i class="n3">3</i><b>Rate</b> each topic</span></p>`;
   const ecg=`<svg class="ecg" aria-hidden="true" viewBox="0 0 600 120" preserveAspectRatio="none"><path d="M0 70H170L190 70L205 30L225 105L245 15L265 70H330L345 55L360 70H600" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   let h=`<div class="home"><section class="hero hero2">${ecg}<p class="eyebrow">Free revision for Stonyhurst mathematicians</p><p class="lead">Videos, practice and exam questions for <em>every unit</em> of your maths course.</p>${cont}${how}</section><h2 class="steph sect">Pick your course and year</h2><div class="courses">`;
   DATA.forEach(c=>{
