@@ -204,7 +204,7 @@ footer{max-width:1180px;margin:0 auto;border-top:1px solid var(--line);padding-b
 /* ===== restructure: home / list / unit ===== */
 header.site{padding-block:24px 16px}
 .brand{text-decoration:none;color:inherit;display:inline-block}
-main{display:block;max-width:1180px;padding-block:22px 60px}
+main{display:block;max-width:1180px;padding-block:26px 60px}
 .home{max-width:980px}
 .toolrow{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 6px}
 .layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:32px;margin-top:18px}
@@ -398,6 +398,17 @@ nav .shtag{font-size:.64rem;font-weight:700;color:var(--accent);border:1px solid
 }
 @media (prefers-reduced-motion:reduce){.ccard,.ccard .yr,.ccard a.yr span{transition:none}.ccard:hover{transform:none}}
 
+
+/* ===== slim navy brand bar (Oct 2026) ===== */
+header.site{max-width:none;margin:0 -16px;padding:12px max(16px,calc((100vw - 1180px)/2));background:#18212F;background-image:none;border-bottom:3px solid #F7DC5C;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) header.site{background:#0B0F15}}
+:root[data-theme="dark"] header.site{background:#0B0F15}
+header.site .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+header.site .logo{width:42px;height:42px;border-radius:10px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+header.site h1{margin:0;color:#F3F5F8;font-size:1.55rem;line-height:1.1}
+header.site h1 span{background:none;color:#F7DC5C;padding:0}
+header.site .byline{margin:0;color:#B7C0CE;font-size:.9rem;padding-left:14px;border-left:1px solid rgba(255,255,255,.18);letter-spacing:.02em}
+@media (max-width:720px){header.site{gap:10px}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}header.site .byline{font-size:.8rem;padding-left:10px}}
 </style>
 </head>
 <body>

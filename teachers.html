@@ -218,14 +218,31 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex:none
 .btn:disabled,.btn[aria-disabled="true"]:not([href]){opacity:.45;cursor:not-allowed}
 .hint{font-size:.88rem;color:var(--muted);margin:0 0 10px}
 @media (max-width:900px){.tpgrid{grid-template-columns:minmax(0,1fr)}.out{position:static;order:-1}}
+
+/* ===== slim navy brand bar (Oct 2026) ===== */
+header.site{max-width:none;margin:0 -16px;padding:12px max(16px,calc((100vw - 1180px)/2));background:#18212F;background-image:none;border-bottom:3px solid #F7DC5C;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) header.site{background:#0B0F15}}
+:root[data-theme="dark"] header.site{background:#0B0F15}
+header.site .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+header.site .logo{width:42px;height:42px;border-radius:10px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+header.site h1{margin:0;color:#F3F5F8;font-size:1.55rem;line-height:1.1}
+header.site h1 span{background:none;color:#F7DC5C;padding:0}
+header.site .byline{margin:0;color:#B7C0CE;font-size:.9rem;padding-left:14px;border-left:1px solid rgba(255,255,255,.18);letter-spacing:.02em}
+@media (max-width:720px){header.site{gap:10px}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}header.site .byline{font-size:.8rem;padding-left:10px}}
+header.tphead{padding-block:22px 18px}
+.tptitle{margin:0;font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.15}
+@media (max-width:820px){#tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%}#tabs .tab{padding:8px 2px;text-align:center}}
 </style>
 </head>
 <body>
-<header>
+<header class="site">
+  <a class="brand" href="./" aria-label="Maths Clinic home"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#18212F"/><path d="M8 34H12L16 18L21 42L26 14L31 34H41M55 23H41V45H55" fill="none" stroke="#F7DC5C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><h1>Maths <span>Clinic</span></h1></a>
+  <p class="byline">Teacher page</p>
+</header>
+<header class="tphead">
   <div class="top">
     <div>
-      <h1>Maths <span>Clinic</span></h1>
-      <p class="byline">Teacher page: make a revision link for a test</p>
+      <h2 class="tptitle">Make a revision link for a test</h2>
       <p class="sub">Tick what the test covers, name it, then send pupils the link or show the QR code. Pupils see only those topics, with the videos and practice questions.</p>
     </div>
     <div class="step"><span class="steplbl"><i>1</i>Pick the course</span><div class="tabs" role="tablist" aria-label="Course" id="tabs"></div></div>
