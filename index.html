@@ -2777,7 +2777,7 @@ function linkBtns(sk,small){
   return h;
 }
 function subsHTML(s){
-  if(!s.length) return '';
+  if(!s.length||course==='ks3') return '';
   const hasD=s.some(x=>x[4]);
   let h=`<details><summary>Step-by-step practice: ${s.length} short set${s.length>1?'s':''}${hasD?', easiest first':''}</summary>${hasD?`<div class="key">Difficulty ${dots(1)} easy &nbsp;to&nbsp; ${dots(5)} hard</div>`:''}<ul class="subs${hasD?'':' nodiff'}">`;
   [...s].sort((a,b)=>(a[4]||9)-(b[4]||9)).forEach(x=>{ h+=`<li>${hasD?`<span class="dots-cell">${dots(x[4])}</span>`:''}<span>${esc(x[1])}</span><span class="links">${linkBtns(x,true)}</span></li>`; });
@@ -2835,7 +2835,7 @@ function howto(){
 <li>Learnt the whole chapter? Do the <b>Exam questions</b> (gold) on paper and mark them with the mark scheme.</li>`
 :`<li><b>Log in to Dr Frost</b> first, so your answers are saved.</li>
 <li>Stuck on a topic? <b>Watch the video</b> first.</li>
-<li>Try the <b>Practice questions</b>, writing your working on paper, then type in your answer. Too hard? Open <b>Step-by-step practice</b> and start with the easiest set.</li>
+<li>Try the <b>Practice questions</b>, writing your working on paper, then type in your answer.</li>
 <li>Rate each topic: <b>Not yet</b>, <b>Getting there</b> or <b>Confident</b>. Come back to the ones that aren't green.</li>`;
   return `<section class="howto" aria-label="How to use this page"><button class="x" id="hidehow" aria-label="Hide these tips">×</button><h2>How to revise with this page</h2><ol>${steps}</ol>${al?`<p class="hownote">Keep a revision exercise book: head each session with the date and section (e.g. <i>2.1 Radians</i>), and use the back pages to list things you got wrong.</p>`:''}</section>`;
 }
