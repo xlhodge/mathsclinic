@@ -49,7 +49,7 @@ select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;backgrou
 .sk .meter{height:5px;border-radius:99px;background:var(--line);overflow:hidden}
 .sk .meter i{display:block;height:100%;background:var(--g);border-radius:99px}
 .sk.all b{color:var(--accent)}
-.dots{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 16px}
+.dots{scroll-margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;margin:0 0 16px}
 .dots button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:.8rem;font-weight:700;color:var(--muted);padding:0}
 .dots button.done{background:color-mix(in srgb,var(--g) 18%,var(--surface));border-color:var(--g);color:var(--g)}
 .dots button[aria-current="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
@@ -90,13 +90,11 @@ footer{max-width:1000px;margin:0 auto;border-top:1px solid var(--line);padding-b
   <p class="crumbs"><a id="back" href="./">&larr; Back to the chapter</a></p>
   <p class="kicker">A Level · Old-syllabus MEI questions</p>
   <h2 id="title">Old-syllabus MEI questions</h2>
-  <p class="lead">Questions from the <b>old MEI A Level papers</b> (module C3, 2011 to 2018), before the current specification. Do each one on paper, then check it against the mark scheme.</p>
-  <p class="oldspec"><b>Old syllabus.</b> These papers were written for the old course, so the style is more structured than your exam will be and a few parts may use slightly different methods or notation. They are great practice for the skills, but use the current MEI papers to see what your real exam looks like.</p>
+  <p class="lead"><b>Old MEI papers</b> (C3, 2011 to 2018). Great practice for each skill, though the style differs a bit from your exam. Do each one on paper, then check the mark scheme.</p>
   <div class="bar">
     <select id="ch" aria-label="Chapter"></select>
   </div>
   <div class="skills" id="skills" role="group" aria-label="Choose a skill"></div>
-  <p class="prog" id="prog"></p>
   <div class="dots" id="dots" aria-label="Jump to a question"></div>
   <section class="card" id="card" aria-live="polite"></section>
   <p class="tip">Pick a skill, then work through it one question at a time. Each skill starts with the questions worth the fewest marks. Long questions are the big 15 to 18 mark questions from the end of the paper, and some parts use other topics too.</p>
@@ -113,23 +111,22 @@ const byMarks=(a,b)=>a.m-b.m||Q.indexOf(a)-Q.indexOf(b);
 function inSkill(c,s){ return Q.filter(q=>q.sk[c]===s).sort(byMarks); }
 function list(){ return sk==='all'?CH[ch].sk.flatMap(s=>inSkill(ch,s)):inSkill(ch,sk); }
 function isDone(q){ return store.get('qdone:'+q.id)==='1'; }
-function read(){ const h=decodeURIComponent(location.hash.slice(1)).split('/'); if(CH[h[0]]) ch=h[0]; sk='all';
+function read(){ const h=decodeURIComponent(location.hash.slice(1)).split('/'); if(CH[h[0]]) ch=h[0]; sk=h[1]==='all'||/^\d+$/.test(h[1]||'')?'all':CH[ch].sk[0];
   let n=parseInt(h[1],10); const f=CH[ch].sk.find(s=>slug(s)===h[1]); if(f){ sk=f; n=parseInt(h[2],10); }
   else if(h[2]==='long'&&CH[ch].sk.includes('Long questions')) sk='Long questions';
   i=n>=1?n-1:0; }
 function write(){ history.replaceState(null,'',`#${ch}/${sk==='all'?'all':slug(sk)}/${i+1}`); }
 function tile(s,L,cls){ const d=L.filter(isDone).length, pct=L.length?Math.round(100*d/L.length):0;
-  return `<button class="sk ${cls||''}" data-s="${s}" aria-pressed="${sk===s}"><span class="top"><b>${s==='all'?'All questions':s}</b><span class="n">${d} / ${L.length} done</span></span><span class="meter" aria-hidden="true"><i style="width:${pct}%"></i></span></button>`; }
+  return `<button class="sk ${cls||''}" data-s="${s}" aria-pressed="${sk===s}"><span class="top"><b>${s==='all'?'All questions':s}</b><span class="n">${d} / ${L.length} done</span></span>${d?`<span class="meter" aria-hidden="true"><i style="width:${pct}%"></i></span>`:''}</button>`; }
 function render(){
   const L=list(); if(i>=L.length) i=Math.max(0,L.length-1);
   $('#ch').value=ch; $('#title').textContent=CH[ch].name;
   $('#back').href='./#alevel-'+ch; $('#back').textContent='← Back to '+CH[ch].short;
-  $('#skills').innerHTML=tile('all',Q.filter(q=>q.ch.includes(ch)),'all')+CH[ch].sk.map(s=>tile(s,inSkill(ch,s))).join('');
-  const done=L.filter(isDone).length; $('#prog').textContent=L.length?`${sk==='all'?'All questions':sk}: ${done} of ${L.length} done`:'';
+  $('#skills').innerHTML=CH[ch].sk.map(s=>tile(s,inSkill(ch,s))).join('')+(CH[ch].sk.length>1?tile('all',Q.filter(q=>q.ch.includes(ch)),'all'):'');
   $('#dots').innerHTML=L.map((q,k)=>`<button class="${isDone(q)?'done':''}" aria-current="${k===i}" data-k="${k}" title="${q.src} Q${q.q}">${k+1}</button>`).join('');
   if(!L.length){ $('#card').innerHTML='<p class="empty">No questions for this skill yet.</p>'; write(); return; }
   const q=L[i];
-  $('#card').innerHTML=`<div class="chead"><b>Question ${i+1} of ${L.length}: ${q.t}</b><span class="meta"><span>${q.sk[ch]}</span><span>MEI ${q.src}, Q${q.q}</span><span class="pill marks">${q.m} marks</span>${q.long?'<span class="pill long">Long</span>':''}</span></div>
+  $('#card').innerHTML=`<div class="chead"><b>Question ${i+1} of ${L.length}: ${q.t}</b><span class="meta">${sk==='all'?`<span>${q.sk[ch]}</span>`:''}<span>MEI ${q.src}, Q${q.q}</span><span class="pill marks">${q.m} marks</span>${q.long?'<span class="pill long">Long</span>':''}</span></div>
   <div class="paper"><a href="q/${q.id}.png" target="_blank" rel="noopener" title="Open full size"><img src="q/${q.id}.png" width="${q.qw}" height="${q.qh}" alt="MEI ${q.src} question ${q.q}: ${q.t}"></a><p class="zoom">Tap the question to open it full size</p></div>
   ${showMs?`<div class="mshead"><span>Mark scheme</span><a href="q/${q.id}-ms.png" target="_blank" rel="noopener">Open full size &#8599;</a></div><div class="paper ms"><img src="q/${q.id}-ms.png" width="${q.mw}" height="${q.mh}" alt="Mark scheme for MEI ${q.src} question ${q.q}"></div>`:''}
   <div class="acts"><button class="btn" id="prev" ${i?'':'disabled'}>&larr; Previous</button><button class="btn gold" id="ms">${showMs?'Hide mark scheme':'Show mark scheme'}</button><button class="btn" id="next" ${i<L.length-1?'':'disabled'}>Next &rarr;</button><button class="btn" id="rand">Random</button>
@@ -138,10 +135,10 @@ function render(){
 }
 function go(k){ i=k; showMs=false; render(); $('#card').scrollIntoView({block:'nearest'}); }
 $('#ch').innerHTML=Object.entries(CH).map(([k,v])=>`<option value="${k}">${v.name} (${Q.filter(q=>q.ch.includes(k)).length})</option>`).join('');
-$('#ch').addEventListener('change',e=>{ch=e.target.value;sk='all';i=0;showMs=false;render();});
+$('#ch').addEventListener('change',e=>{ch=e.target.value;sk=CH[ch].sk[0];i=0;showMs=false;render();});
 document.addEventListener('click',e=>{
   const t=e.target.closest('button,[data-k]'); if(!t) return;
-  if(t.dataset.s){ sk=t.dataset.s; i=0; showMs=false; render(); if(innerWidth<=640) $('#prog').scrollIntoView({behavior:'smooth',block:'start'}); }
+  if(t.dataset.s){ sk=t.dataset.s; i=0; showMs=false; render(); if(innerWidth<=640) $('#dots').scrollIntoView({behavior:'smooth',block:'start'}); }
   else if(t.dataset.k!==undefined) go(+t.dataset.k);
   else if(t.id==='prev') go(i-1);
   else if(t.id==='next') go(i+1);
