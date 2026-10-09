@@ -2841,7 +2841,7 @@ function howto(){
 }
 
 /* past paper question bank (questions.html): number of questions per chapter */
-const QBANK={'r-1':9,'r-4':23,'r-5':29,'r-6':6,'r-9':24,'r-10':30,'p-13':6};
+const QBANK={'p-1':8,'p-2':22,'p-3':17,'p-4':20,'p-5':27,'p-6':22,'p-7':22,'p-8':23,'p-9':9,'p-10':27,'p-11':20,'p-13':27,'r-1':9,'r-2':10,'r-3':24,'r-4':23,'r-5':29,'r-6':6,'r-9':24,'r-10':30,'r-14':6};
 function practiceStrip(u){
   if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!(course==='alevel'&&QBANK[u.id]))) return '';
   const MB='https://www.mathsblueprint.co.uk/a-level/ocr-mei/';
