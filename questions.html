@@ -59,6 +59,7 @@ h2{margin:2px 0 4px;font-size:1.7rem;line-height:1.15}
 .meta{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:.84rem;color:var(--muted)}
 .pill{font-size:.75rem;font-weight:700;border-radius:99px;padding:1px 9px;border:1px solid var(--line)}
 .pill.cur{border-color:color-mix(in srgb,var(--g) 55%,var(--line));color:var(--g)}
+.pill.old{color:var(--muted);background:var(--paper);border-style:dashed}
 .pill.long{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));color:var(--accent);background:var(--accent-soft)}
 .offnote{margin:8px 0 0;padding:6px 10px;border-left:4px solid var(--hl);background:color-mix(in srgb,var(--hl) 16%,var(--surface));border-radius:6px;font-size:.88rem;color:var(--ink)}
 .paper{background:var(--paper);padding:16px;overflow-x:auto;margin:14px 18px;border:1px solid color-mix(in srgb,var(--ink) 22%,var(--line));border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
@@ -124,7 +125,7 @@ function render(){
   if(!L.length){ $('#card').innerHTML='<p class="empty">No questions for this skill yet.</p>'; write(); return; }
   const q=L[i];
   $('#card').innerHTML=`<div class="chead"><div class="qpos"><span>Question ${i+1} of ${L.length}</span><span class="qdots" aria-label="Jump to a question">${L.map((x,k)=>`<button class="${isDone(x)?'done':''}" aria-current="${k===i}" data-k="${k}" title="Question ${k+1}${isDone(x)?' (done)':''}" aria-label="Question ${k+1}"></button>`).join('')}</span></div>
-  <h3>${q.t}</h3><div class="meta">${sk==='all'?`<span>${q.sk[ch]} ·</span>`:''}<span>MEI ${q.src} · Q${q.q} · ${q.m} marks</span>${q.src.startsWith('Paper')?'<span class="pill cur">Current spec</span>':''}${q.long?'<span class="pill long">Long question</span>':''}</div>${q.off||q.note?`<p class="offnote">${q.off||q.note}</p>`:''}</div>
+  <h3>${q.t}</h3><div class="meta">${sk==='all'?`<span>${q.sk[ch]} ·</span>`:''}<span>MEI ${q.src} · Q${q.q} · ${q.m} marks</span>${q.src.startsWith('Paper')?'<span class="pill cur">Current spec</span>':`<span class="pill old" title="From the pre-2017 MEI modular papers">Old spec (${q.src.split(' ')[0]})</span>`}${q.long?'<span class="pill long">Long question</span>':''}</div>${q.off||q.note?`<p class="offnote">${q.off||q.note}</p>`:''}</div>
   <div class="paper"><a href="q/${q.id}.png" target="_blank" rel="noopener" title="Open full size"><img src="q/${q.id}.png" width="${q.qw}" height="${q.qh}" alt="MEI ${q.src} question ${q.q}: ${q.t}"></a><p class="zoom">Tap the question to open it full size</p></div>
   ${showMs?`<div class="mshead"><span>Mark scheme</span><a href="q/${q.id}-ms.png" target="_blank" rel="noopener">Open full size &#8599;</a></div><div class="paper ms"><img src="q/${q.id}-ms.png" width="${q.mw}" height="${q.mh}" alt="Mark scheme for MEI ${q.src} question ${q.q}"></div>`:''}
   <div class="acts"><button class="btn" id="prev" ${i?'':'disabled'}>&larr; Previous</button><button class="btn gold" id="ms">${showMs?'Hide mark scheme':'Mark scheme'}</button><button class="btn" id="next" ${i<L.length-1?'':'disabled'}>Next &rarr;</button>
