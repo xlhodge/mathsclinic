@@ -429,7 +429,10 @@ nav .shtag{font-size:.64rem;font-weight:700;color:var(--accent);border:1px solid
 .ppib{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
 .ppib b{color:var(--ink)}
 @media (max-width:720px){.pptiles{grid-template-columns:minmax(0,1fr)}}
-.ppsec{border-radius:16px;border:1px solid color-mix(in srgb,var(--hl) 70%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--hl) 12%,var(--surface)),var(--surface) 140px)}
+.ppsec{border-radius:16px;border:2px solid var(--hl);background:color-mix(in srgb,var(--hl) 24%,var(--surface));box-shadow:0 6px 18px -10px color-mix(in srgb,var(--hl) 80%,transparent)}
+.ppsec .ppintro{color:var(--ink);opacity:.8}
+.ppsec .pptile{border-color:color-mix(in srgb,var(--hl) 45%,var(--line));border-top-color:var(--c);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.ppsec .ppib{border-top-color:color-mix(in srgb,var(--hl) 55%,var(--line));color:var(--ink);opacity:.8}
 .ppsec .steph{font-size:1.3rem}
 @media (max-width:720px){
   .hero.hero2{padding:22px 18px 18px;border-radius:16px}
