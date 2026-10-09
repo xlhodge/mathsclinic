@@ -34,7 +34,10 @@ main{max-width:1000px;margin:0 auto;padding-block:22px 60px}
 h2{margin:2px 0 4px;font-size:1.7rem;line-height:1.15}
 .lead{margin:0 0 14px;color:var(--muted);font-size:.95rem}
 .lead b{color:var(--ink)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.skillbox{background:color-mix(in srgb,var(--accent) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-left:5px solid var(--hl);border-radius:12px;padding:10px 14px 12px;margin:0 0 16px}
+.sblbl{margin:0 0 8px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chips .sep{width:1px;align-self:stretch;background:color-mix(in srgb,var(--accent) 25%,var(--line));margin:2px 4px}
 .chip{display:inline-flex;flex-direction:column;gap:4px;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px 7px;cursor:pointer;text-align:left}
 .chip:hover{border-color:var(--accent)}
 .chip .t{display:flex;gap:8px;align-items:baseline;font-weight:700;font-size:.9rem;line-height:1.2}
@@ -72,7 +75,7 @@ h2{margin:2px 0 4px;font-size:1.7rem;line-height:1.15}
 .mshead a{font-weight:400;font-size:.85rem}
 .empty{padding:30px;text-align:center;color:var(--muted)}
 footer{max-width:1000px;margin:0 auto;border-top:1px solid var(--line);padding-block:16px 30px;color:var(--muted);font-size:.82rem}
-@media (max-width:640px){.chip{padding:5px 11px 6px}.chip .t{font-size:.84rem}.zoom{display:block}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}h2{font-size:1.4rem}.acts .btn{flex:1 1 auto}.btn.donebtn{margin-left:0;flex:1 1 100%}.paper{padding:8px;margin:10px}}
+@media (max-width:640px){.chips .sep{display:none}.chip{padding:5px 11px 6px}.chip .t{font-size:.84rem}.zoom{display:block}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}h2{font-size:1.4rem}.acts .btn{flex:1 1 auto}.btn.donebtn{margin-left:0;flex:1 1 100%}.paper{padding:8px;margin:10px}}
 </style>
 </head>
 <body>
@@ -85,7 +88,7 @@ footer{max-width:1000px;margin:0 auto;border-top:1px solid var(--line);padding-b
   <p class="kicker">A Level · Past MEI exam questions</p>
   <h2 id="title">Past MEI exam questions</h2>
   <p class="lead" id="lead"></p>
-  <div class="chips" id="skills" role="group" aria-label="Choose a skill"></div>
+  <section class="skillbox"><p class="sblbl">Pick a skill</p><div class="chips" id="skills" role="group" aria-label="Choose a skill"></div></section>
   <section class="card" id="card" aria-live="polite"></section>
 </main>
 <footer>Questions and mark schemes © OCR, from MEI A Level Mathematics papers (C1, C2 and C3: 4751, 4752 and 4753), reproduced for revision. Your ticks are stored only in this browser.</footer>
@@ -112,8 +115,9 @@ function render(){
   const all=Q.filter(q=>q.ch.includes(ch)), done=all.filter(isDone).length;
   $('#title').textContent=CH[ch].name;
   $('#back').href='./#alevel-'+ch; $('#back').textContent='← Back to '+CH[ch].short;
-  $('#lead').innerHTML=`<b>${all.length} exam questions</b> from MEI papers 2011 to 2018, grouped by skill, easiest first.${done?` You've done <b>${done}</b>.`:''} Do each one on paper, then check the mark scheme.`;
-  $('#skills').innerHTML=CH[ch].sk.map(s=>chip(s,inSkill(ch,s))).join('')+(CH[ch].sk.length>1?chip('all',all):'');
+  $('#lead').innerHTML=`<b>${all.length} exam questions</b> from MEI papers, 2011 to 2018.${done?` You've done <b>${done}</b>.`:''}`;
+  const main=CH[ch].sk.filter(s=>s!=='Long questions'), lq=CH[ch].sk.includes('Long questions');
+  $('#skills').innerHTML=main.map(s=>chip(s,inSkill(ch,s))).join('')+((lq||CH[ch].sk.length>1)?'<span class="sep" aria-hidden="true"></span>':'')+(lq?chip('Long questions',inSkill(ch,'Long questions')):'')+(CH[ch].sk.length>1?chip('all',all):'');
   if(!L.length){ $('#card').innerHTML='<p class="empty">No questions for this skill yet.</p>'; write(); return; }
   const q=L[i];
   $('#card').innerHTML=`<div class="chead"><div class="qpos"><span>Question ${i+1} of ${L.length}</span><span class="qdots" aria-label="Jump to a question">${L.map((x,k)=>`<button class="${isDone(x)?'done':''}" aria-current="${k===i}" data-k="${k}" title="Question ${k+1}${isDone(x)?' (done)':''}" aria-label="Question ${k+1}"></button>`).join('')}</span></div>
