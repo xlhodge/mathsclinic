@@ -32,53 +32,46 @@ main{max-width:1000px;margin:0 auto;padding-block:22px 60px}
 .crumbs a{font-weight:700;text-decoration:none}
 .kicker{margin:0;color:var(--muted);font-size:.9rem}
 h2{margin:2px 0 4px;font-size:1.7rem;line-height:1.15}
-.lead{margin:0 0 16px;color:var(--muted)}
-.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
-select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-width:0;max-width:100%}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:3px}
-.seg button{border:0;background:transparent;padding:6px 12px;border-radius:7px;cursor:pointer;font-weight:700;color:var(--muted)}
-.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
-.prog{margin:0 0 8px;font-size:.9rem;font-weight:700;color:var(--muted);scroll-margin-top:10px}
-.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin:0 0 16px}
-.sk{display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;cursor:pointer}
-.sk:hover{border-color:var(--accent)}
-.sk[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
-.sk .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.sk b{font-size:.95rem;line-height:1.25}
-.sk .n{font-size:.8rem;color:var(--muted);white-space:nowrap}
-.sk .meter{height:5px;border-radius:99px;background:var(--line);overflow:hidden}
-.sk .meter i{display:block;height:100%;background:var(--g);border-radius:99px}
-.sk.all b{color:var(--accent)}
-.dots{scroll-margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;margin:0 0 16px}
-.dots button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:.8rem;font-weight:700;color:var(--muted);padding:0}
-.dots button.done{background:color-mix(in srgb,var(--g) 18%,var(--surface));border-color:var(--g);color:var(--g)}
-.dots button[aria-current="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.lead{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.lead b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.chip{display:inline-flex;flex-direction:column;gap:4px;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px 7px;cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--accent)}
+.chip .t{display:flex;gap:8px;align-items:baseline;font-weight:700;font-size:.9rem;line-height:1.2}
+.chip .n{font-weight:400;font-size:.78rem;color:var(--muted)}
+.chip .m{height:3px;border-radius:99px;background:var(--line);overflow:hidden}
+.chip .m i{display:block;height:100%;background:var(--g)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip[aria-pressed="true"] .n{color:var(--accent-ink);opacity:.85}
+.chip[aria-pressed="true"] .m{background:color-mix(in srgb,var(--accent-ink) 35%,transparent)}
+.chip[aria-pressed="true"] .m i{background:var(--accent-ink)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.chead{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
-.chead b{font-size:1.1rem}
-.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.85rem;color:var(--muted)}
+.chead{padding:12px 18px 12px;border-bottom:1px solid var(--line)}
+.qpos{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.82rem;color:var(--muted);font-weight:700}
+.qdots{display:inline-flex;gap:5px;flex-wrap:wrap}
+.qdots button{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--muted);background:transparent;padding:0;cursor:pointer}
+.qdots button.done{background:var(--g);border-color:var(--g)}
+.qdots button[aria-current="true"]{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent)}
+.chead h3{margin:4px 0 2px;font-size:1.15rem;line-height:1.3}
+.meta{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:.84rem;color:var(--muted)}
 .pill{font-size:.75rem;font-weight:700;border-radius:99px;padding:1px 9px;border:1px solid var(--line)}
 .pill.long{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));color:var(--accent);background:var(--accent-soft)}
-.pill.marks{border-color:color-mix(in srgb,var(--hl) 80%,var(--line));background:color-mix(in srgb,var(--hl) 25%,var(--surface));color:var(--ink)}
 .paper{background:var(--paper);padding:14px;overflow-x:auto}
 .zoom{display:none;margin:6px 0 0;text-align:center;font-size:.8rem;color:#5A6474}
 .paper img{display:block;max-width:100%;height:auto;margin:0 auto}
 .paper.ms img{min-width:640px;max-width:none;width:100%}
-.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 18px;border-top:1px solid var(--line)}
-.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:9px;cursor:pointer;text-decoration:none;color:var(--ink);font-weight:700;font-size:.92rem}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 18px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:9px;cursor:pointer;text-decoration:none;color:var(--ink);font-weight:700;font-size:.92rem}
 .btn:hover{border-color:var(--accent)}
 .btn.gold{background:var(--hl);border-color:color-mix(in srgb,var(--hl) 70%,var(--ink));color:var(--hl-ink)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .btn[disabled]{opacity:.4;cursor:default}
-.done-l{display:inline-flex;align-items:center;gap:8px;font-weight:700;cursor:pointer;margin-left:auto}
-.done-l input{width:20px;height:20px;accent-color:var(--g)}
+.btn.donebtn{margin-left:auto}
+.btn.donebtn[aria-pressed="true"]{background:var(--g);border-color:var(--g);color:#fff}
 .mshead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 18px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--hl) 14%,var(--surface));font-weight:700}
 .mshead a{font-weight:400;font-size:.85rem}
-.oldspec{margin:0 0 16px;padding:10px 14px;border-left:4px solid var(--hl);background:color-mix(in srgb,var(--hl) 14%,var(--surface));border-radius:8px;font-size:.92rem}
-.tip{margin:14px 0 0;color:var(--muted);font-size:.9rem}
 .empty{padding:30px;text-align:center;color:var(--muted)}
 footer{max-width:1000px;margin:0 auto;border-top:1px solid var(--line);padding-block:16px 30px;color:var(--muted);font-size:.82rem}
-@media (max-width:640px){.skills{grid-template-columns:1fr 1fr;gap:6px}.sk{padding:8px 10px}.sk b{font-size:.9rem}.sk .top{flex-direction:column;gap:2px}.zoom{display:block}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}h2{font-size:1.4rem}.done-l{margin-left:0;flex:1 1 100%}.acts .btn{flex:1 1 auto;justify-content:center}.paper{padding:8px}}
+@media (max-width:640px){.chip{padding:5px 11px 6px}.chip .t{font-size:.84rem}.zoom{display:block}header.site .logo{width:36px;height:36px}header.site h1{font-size:1.3rem}h2{font-size:1.4rem}.acts .btn{flex:1 1 auto}.btn.donebtn{margin-left:0;flex:1 1 100%}.paper{padding:8px}}
 </style>
 </head>
 <body>
@@ -88,16 +81,11 @@ footer{max-width:1000px;margin:0 auto;border-top:1px solid var(--line);padding-b
 </header>
 <main>
   <p class="crumbs"><a id="back" href="./">&larr; Back to the chapter</a></p>
-  <p class="kicker">A Level · Old-syllabus MEI questions</p>
-  <h2 id="title">Old-syllabus MEI questions</h2>
-  <p class="lead"><b>Old MEI papers</b> (C1, C2 and C3, 2011 to 2018). Great practice for each skill, though the style differs a bit from your exam. Do each one on paper, then check the mark scheme.</p>
-  <div class="bar">
-    <select id="ch" aria-label="Chapter"></select>
-  </div>
-  <div class="skills" id="skills" role="group" aria-label="Choose a skill"></div>
-  <div class="dots" id="dots" aria-label="Jump to a question"></div>
+  <p class="kicker">A Level · Past MEI exam questions</p>
+  <h2 id="title">Past MEI exam questions</h2>
+  <p class="lead" id="lead"></p>
+  <div class="chips" id="skills" role="group" aria-label="Choose a skill"></div>
   <section class="card" id="card" aria-live="polite"></section>
-  <p class="tip">Pick a skill, then work through it one question at a time. Each skill starts with the questions worth the fewest marks. Long questions are the big questions from the end of the paper (10 to 18 marks), and some parts use other topics too.</p>
 </main>
 <footer>Questions and mark schemes © OCR, from MEI A Level Mathematics papers (C1, C2 and C3: 4751, 4752 and 4753), reproduced for revision. Your ticks are stored only in this browser.</footer>
 <script>
@@ -116,37 +104,36 @@ function read(){ const h=decodeURIComponent(location.hash.slice(1)).split('/'); 
   else if(h[2]==='long'&&CH[ch].sk.includes('Long questions')) sk='Long questions';
   i=n>=1?n-1:0; }
 function write(){ history.replaceState(null,'',`#${ch}/${sk==='all'?'all':slug(sk)}/${i+1}`); }
-function tile(s,L,cls){ const d=L.filter(isDone).length, pct=L.length?Math.round(100*d/L.length):0;
-  return `<button class="sk ${cls||''}" data-s="${s}" aria-pressed="${sk===s}"><span class="top"><b>${s==='all'?'All questions':s}</b><span class="n">${d} / ${L.length} done</span></span>${d?`<span class="meter" aria-hidden="true"><i style="width:${pct}%"></i></span>`:''}</button>`; }
+function chip(s,L){ const d=L.filter(isDone).length, pct=L.length?Math.round(100*d/L.length):0;
+  return `<button class="chip" data-s="${s}" aria-pressed="${sk===s}"><span class="t">${s==='all'?'All':s}<span class="n">${d}/${L.length}</span></span>${d?`<span class="m" aria-hidden="true"><i style="width:${pct}%"></i></span>`:''}</button>`; }
 function render(){
   const L=list(); if(i>=L.length) i=Math.max(0,L.length-1);
-  $('#ch').value=ch; $('#title').textContent=CH[ch].name;
+  const all=Q.filter(q=>q.ch.includes(ch)), done=all.filter(isDone).length;
+  $('#title').textContent=CH[ch].name;
   $('#back').href='./#alevel-'+ch; $('#back').textContent='← Back to '+CH[ch].short;
-  $('#skills').innerHTML=CH[ch].sk.map(s=>tile(s,inSkill(ch,s))).join('')+(CH[ch].sk.length>1?tile('all',Q.filter(q=>q.ch.includes(ch)),'all'):'');
-  $('#dots').innerHTML=L.map((q,k)=>`<button class="${isDone(q)?'done':''}" aria-current="${k===i}" data-k="${k}" title="${q.src} Q${q.q}">${k+1}</button>`).join('');
+  $('#lead').innerHTML=`<b>${all.length} exam questions</b> from MEI papers 2011 to 2018, grouped by skill, easiest first.${done?` You've done <b>${done}</b>.`:''} Do each one on paper, then check the mark scheme.`;
+  $('#skills').innerHTML=CH[ch].sk.map(s=>chip(s,inSkill(ch,s))).join('')+(CH[ch].sk.length>1?chip('all',all):'');
   if(!L.length){ $('#card').innerHTML='<p class="empty">No questions for this skill yet.</p>'; write(); return; }
   const q=L[i];
-  $('#card').innerHTML=`<div class="chead"><b>Question ${i+1} of ${L.length}: ${q.t}</b><span class="meta">${sk==='all'?`<span>${q.sk[ch]}</span>`:''}<span>MEI ${q.src}, Q${q.q}</span><span class="pill marks">${q.m} marks</span>${q.long?'<span class="pill long">Long</span>':''}</span></div>
+  $('#card').innerHTML=`<div class="chead"><div class="qpos"><span>Question ${i+1} of ${L.length}</span><span class="qdots" aria-label="Jump to a question">${L.map((x,k)=>`<button class="${isDone(x)?'done':''}" aria-current="${k===i}" data-k="${k}" title="Question ${k+1}${isDone(x)?' (done)':''}" aria-label="Question ${k+1}"></button>`).join('')}</span></div>
+  <h3>${q.t}</h3><div class="meta">${sk==='all'?`<span>${q.sk[ch]} ·</span>`:''}<span>MEI ${q.src} · Q${q.q} · ${q.m} marks</span>${q.long?'<span class="pill long">Long question</span>':''}</div></div>
   <div class="paper"><a href="q/${q.id}.png" target="_blank" rel="noopener" title="Open full size"><img src="q/${q.id}.png" width="${q.qw}" height="${q.qh}" alt="MEI ${q.src} question ${q.q}: ${q.t}"></a><p class="zoom">Tap the question to open it full size</p></div>
   ${showMs?`<div class="mshead"><span>Mark scheme</span><a href="q/${q.id}-ms.png" target="_blank" rel="noopener">Open full size &#8599;</a></div><div class="paper ms"><img src="q/${q.id}-ms.png" width="${q.mw}" height="${q.mh}" alt="Mark scheme for MEI ${q.src} question ${q.q}"></div>`:''}
-  <div class="acts"><button class="btn" id="prev" ${i?'':'disabled'}>&larr; Previous</button><button class="btn gold" id="ms">${showMs?'Hide mark scheme':'Show mark scheme'}</button><button class="btn" id="next" ${i<L.length-1?'':'disabled'}>Next &rarr;</button><button class="btn" id="rand">Random</button>
-  <label class="done-l"><input type="checkbox" id="done" ${isDone(q)?'checked':''}> I've done this one</label></div>`;
+  <div class="acts"><button class="btn" id="prev" ${i?'':'disabled'}>&larr; Previous</button><button class="btn gold" id="ms">${showMs?'Hide mark scheme':'Mark scheme'}</button><button class="btn" id="next" ${i<L.length-1?'':'disabled'}>Next &rarr;</button>
+  <button class="btn donebtn" id="done" aria-pressed="${isDone(q)}">${isDone(q)?'Done &#10003;':'Mark as done'}</button></div>`;
   write();
 }
 function go(k){ i=k; showMs=false; render(); $('#card').scrollIntoView({block:'nearest'}); }
-$('#ch').innerHTML=Object.entries(CH).map(([k,v])=>`<option value="${k}">${v.name} (${Q.filter(q=>q.ch.includes(k)).length})</option>`).join('');
-$('#ch').addEventListener('change',e=>{ch=e.target.value;sk=CH[ch].sk[0];i=0;showMs=false;render();});
 document.addEventListener('click',e=>{
-  const t=e.target.closest('button,[data-k]'); if(!t) return;
-  if(t.dataset.s){ sk=t.dataset.s; i=0; showMs=false; render(); if(innerWidth<=640) $('#dots').scrollIntoView({behavior:'smooth',block:'start'}); }
+  const t=e.target.closest('button'); if(!t) return;
+  if(t.dataset.s){ sk=t.dataset.s; i=0; showMs=false; render(); if(innerWidth<=640) $('#card').scrollIntoView({behavior:'smooth',block:'start'}); }
   else if(t.dataset.k!==undefined) go(+t.dataset.k);
   else if(t.id==='prev') go(i-1);
   else if(t.id==='next') go(i+1);
   else if(t.id==='ms'){ showMs=!showMs; render(); }
-  else if(t.id==='rand'){ const L=list(); if(L.length>1){ let k; do{k=Math.floor(Math.random()*L.length);}while(k===i); go(k);} }
+  else if(t.id==='done'){ const q=list()[i]; store.set('qdone:'+q.id,isDone(q)?'':'1'); render(); }
 });
-document.addEventListener('change',e=>{ if(e.target.id==='done'){ const q=list()[i]; store.set('qdone:'+q.id,e.target.checked?'1':''); render(); } });
-document.addEventListener('keydown',e=>{ if(e.target.matches('input,select')) return; const L=list(); if(e.key==='ArrowRight'&&i<L.length-1) go(i+1); if(e.key==='ArrowLeft'&&i>0) go(i-1); });
+document.addEventListener('keydown',e=>{ if(e.target.matches('input,select,textarea')) return; const L=list(); if(e.key==='ArrowRight'&&i<L.length-1) go(i+1); if(e.key==='ArrowLeft'&&i>0) go(i-1); });
 window.addEventListener('hashchange',()=>{read();render();});
 read(); render();
 </script>

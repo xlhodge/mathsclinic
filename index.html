@@ -157,6 +157,13 @@ nav a.test .n{min-width:auto}
 .howto h2{margin:0 0 6px;font-size:1.05rem}
 .howto ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
 .howto .x{position:absolute;top:8px;right:10px;border:0;background:transparent;font-size:1.2rem;cursor:pointer;color:var(--muted);padding:4px 8px}
+/* exam questions bar (slim) */
+.xbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--hl);border-radius:12px;padding:8px 16px;margin:0 0 18px}
+.xbar>b{font-size:1rem;margin-right:auto}
+.xg{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
+.xg small{color:var(--muted);font-size:.8rem}
+.xbar .exq[open]{flex-basis:100%}
+@media (max-width:640px){.xbar>b{flex-basis:100%}}
 /* key words (tap to reveal) */
 .kw{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--hl);border-radius:12px;padding:0 16px;margin:0 0 18px}
 .kw>summary{list-style:none;display:flex;align-items:baseline;gap:10px;padding:10px 0;cursor:pointer;width:auto;max-width:none;color:var(--ink);font-size:1rem}
@@ -2874,14 +2881,17 @@ document.addEventListener('click',e=>{
 const QBANK={'p-1':8,'p-2':22,'p-3':17,'p-4':20,'p-5':27,'p-6':22,'p-7':22,'p-8':23,'p-9':9,'p-10':27,'p-11':20,'p-13':27,'r-1':9,'r-2':10,'r-3':24,'r-4':23,'r-5':29,'r-6':6,'r-9':24,'r-10':30,'r-14':6};
 function practiceStrip(u){
   if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!(course==='alevel'&&QBANK[u.id]))) return '';
-  const MB='https://www.mathsblueprint.co.uk/a-level/ocr-mei/';
-  const row=(lbl,sub,body)=>`<div class="tb-row"><div class="tb-l"><b>${lbl}</b>${sub?` <small>${sub}</small>`:''}</div><div class="xb">${body}</div></div>`;
-  let h='<section class="testbox" aria-label="Test yourself on this chapter"><h3>Learnt this chapter? Test yourself</h3>';
-  if((u.x.ex||[]).length) h+=row(course==='alevel'&&!String(u.id).startsWith('fpm')?'Current-syllabus exam questions':'Exam questions',course==='ib'?'IB-style, with solutions':(String(u.id).startsWith('fpm')?'full papers, with mark schemes':(course==='alevel'?'current MEI course, with mark schemes':'with mark schemes')),(course==='igcse'&&u.x.ex.length>1?`<details class="exq"><summary class="btn gold">Choose a topic (${u.x.ex.length}) &#9662;</summary><div class="exq-l">${u.x.ex.map(e=>`<a class="btn gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`).join('')}</div></details>`:u.x.ex.map(e=>`<a class="btn gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`).join('')));
-  const qn=course==='alevel'?QBANK[u.id]:0;
-  if(qn) h+=row('Old-syllabus MEI questions',`${qn} questions from the old MEI papers (before 2018), one at a time`,`<a class="btn gold" href="questions.html#${u.id}">Practise old MEI questions (${qn}) &rarr;</a>`);
-  if(u.x.pdf) h+=row('Exercise sheets','answers at the back',`<a class="btn primary" href="pdf/${u.x.pdf}" target="_blank" rel="noopener">Exercise sheets (PDF)</a>`);
-  return h+'</section>';
+  const ex=u.x.ex||[], fpm=String(u.id).startsWith('fpm'), qn=course==='alevel'?QBANK[u.id]:0;
+  const exBtn=e=>`<a class="btn small gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`;
+  const g=[];
+  if(ex.length){
+    const lbl=course==='alevel'&&!fpm?'Current MEI':(fpm?'Past papers':(course==='ib'?'IB-style':''));
+    const body=course==='igcse'&&ex.length>1?`<details class="exq"><summary class="btn small gold">Choose a topic (${ex.length}) &#9662;</summary><div class="exq-l">${ex.map(exBtn).join('')}</div></details>`:ex.map(exBtn).join('');
+    g.push(`<span class="xg">${lbl?`<small>${lbl}</small>`:''}${body}</span>`);
+  }
+  if(qn) g.push(`<span class="xg"><small>Past MEI papers</small><a class="btn small gold" href="questions.html#${u.id}">${qn} questions &rarr;</a></span>`);
+  if(u.x.pdf) g.push(`<span class="xg"><a class="btn small primary" href="pdf/${u.x.pdf}" target="_blank" rel="noopener">Exercise sheets (PDF)</a></span>`);
+  return `<section class="xbar" aria-label="Exam questions for this chapter"><b>Exam questions</b>${g.join('')}</section>`;
 }
 
 /* ----- full past papers, per course ----- */
