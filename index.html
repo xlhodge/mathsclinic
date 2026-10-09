@@ -160,10 +160,6 @@ nav a.test .n{min-width:auto}
 /* exam questions bar (slim) */
 .xbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--hl);border-radius:12px;padding:8px 16px;margin:0 0 18px}
 .xbar>b{font-size:1rem;margin-right:auto}
-.oq{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;margin:10px 0 4px;padding:8px 14px;border:1px solid var(--line);border-left:5px solid var(--hl);border-radius:10px;background:var(--surface);color:inherit;text-decoration:none}
-.oq b{font-size:.95rem}
-.oq span{background:var(--hl);color:var(--hl-ink);font-weight:700;border-radius:8px;padding:4px 12px;font-size:.88rem}
-.oq:hover span{filter:brightness(.95)}
 .xg{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
 .xg small{color:var(--muted);font-size:.8rem}
 .xbar .exq[open]{flex-basis:100%}
@@ -2829,13 +2825,11 @@ function unitBody(u){
     u.o.forEach(o=>{
       const key=`${course}-${u.id}-${o.n}`;
       h+=`<article class="obj"><div class="objtop"><span class="num">${esc(o.n)}</span><div class="objtext">${esc(o.t)}<div class="meta">${o.f?`<span class="chip${course==='ib'?' hl':''}">${esc(cur().flag)}</span>`:''}${o.r?`<span class="ref">Book: ${esc(o.r)}</span>`:''}</div></div>${ragHTML(key)}</div>`;
-      if(course==='igcse'){
-        const oq=(QBANK_IGO[u.id]||{})[o.n];
-        if(oq) h+=`<a class="oq" href="questions-igcse.html#${u.id}/${o.t.toLowerCase().replace(/ˣ/g,'x').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}"><b>Exam questions</b><span>${oq} Edexcel question${oq===1?'':'s'} on this &rarr;</span></a>`;
-      }
       if(course==='ib'||course==='igcse'){
         const oi=u.o.indexOf(o)+1, v=(u.x&&u.x.sv&&u.x.sv[oi])||[];
-        if(v.length) h+=`<div class="acts">${v.map(x=>`<a class="btn primary vid" href="${YT}${esc(x[1])}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> ${esc(x[0])}</a>`).join('')}</div>`;
+        const oq=course==='igcse'?((QBANK_IGO[u.id]||{})[o.n]||0):0;
+        const eq=oq?`<a class="btn gold" href="questions-igcse.html#${u.id}/${o.t.toLowerCase().replace(/ˣ/g,'x').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}">Exam questions (${oq})</a>`:'';
+        if(v.length||eq) h+=`<div class="acts">${v.map(x=>`<a class="btn primary vid" href="${YT}${esc(x[1])}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> ${esc(x[0])}</a>`).join('')}${eq}</div>`;
         h+= o.gs.length? o.gs.map(g=>{const [code,name,ssid,vid]=g.g; return `<div class="grp"><div class="grow"><div class="gname">${esc(name)}</div><span class="links">${vid?`<a class="btn primary vid" href="${YT}${esc(vid)}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> Watch video</a>`:''}${ssid?`<a class="btn primary" href="${DF}${ssid}" target="_blank" rel="noopener">Practice questions</a>`:''}</span></div></div>`}).join('') : `<p class="none">No Dr Frost practice for this one. Use the video, your book and class notes.</p>`;
       } else h+= o.gs.length? o.gs.map(g=>groupHTML(g)).join('') : `<p class="none">No Dr Frost practice for this one. Use your book and class notes.</p>`;
       h+='</article>';
@@ -2891,8 +2885,9 @@ const QBANK_IG={'1':68,'2':33,'3':13,'4':19,'5':26,'6':10,'7':12,'8':2,'9':29,'1
 const QBANK_IGO={"13":{"13.2":4,"13.6":12,"13.5":12,"13.3":11,"13.4":15,"13.7":4},"f-13":{"13.4":16,"13.3":18,"13.1":3,"13.2":1},"f-2":{"2.4":15,"2.3":31,"2.2":15,"2.1":3},"f-6":{"6.1":42,"6.2":10},"2":{"2.1":28,"2.2":3,"2.3":2},"16a":{"16a.1":20,"16a.3":1,"16a.2":10,"16a.6":4},"12":{"12.1":11,"12.3":6,"12.2":4},"14":{"14.1":6,"14.3":10,"14.2":8},"1":{"1.1":27,"1.2":4,"1.3":24,"1.4":13},"f-12":{"12.3":21,"12.1":29,"12.2":10},"f-19":{"19.1":23},"f-22":{"22.4":3,"22.3":35,"22.1":20,"22.2":11},"f-9":{"9.3":20,"9.2":5,"9.1":10},"f-21":{"21.1":26,"21.2":4},"4":{"4.1":1,"4.2":18},"5":{"5.2":14,"5.1":10,"5.3":2},"11":{"11.2":4,"11.7":2,"11.6":2,"11.8":2,"11.5":1,"11.4":2,"11.3":2},"17":{"17.3":8,"17.4":5},"16b":{"16b.1":9,"16b.6":6,"16b.5":4,"16b.4":9,"16b.3":10,"16b.2":2},"10":{"10.4":6,"10.3":3,"10.2":9},"20":{"20.4":11,"20.2":1},"19":{"19.3":4,"19.4":7,"19.2":6,"19.5":1,"19.6":2,"19.1":7},"3":{"3.2":10,"3.1":3},"f-1":{"1.10":14,"1.13":29,"1.9":11,"1.11":6,"1.3":15,"1.2":20,"1.8":10,"1.7":2,"1.5":6,"1.1":4,"1.4":6,"1.12":2,"1.14":2,"1.6":2},"8":{"8.1":2},"f-25":{"25.1":4},"f-26":{"26.4":15,"26.2":19,"26.3":11,"26.6":9,"26.1":6},"f-11":{"11.2":14,"11.1":25},"f-5":{"5.4":16,"5.3":3,"5.1":5,"5.2":11},"7":{"7.2":11,"7.1":1},"18":{"18.4":3,"18.8":3,"18.2":1,"18.3":1,"18.6":3,"18.5":1,"18.7":3},"9":{"9.5":6,"9.1":9,"9.2":11,"9.4":2,"9.3":1},"21":{"21.6":3,"21.4":4,"21.5":4,"21.2":4},"f-17":{"17.3":2,"17.2":12,"17.4":7,"17.1":10},"f-16":{"16.5":7,"16.1":1,"16.3":7,"16.2":4,"16.4":1,"16.6":6},"6":{"6.2":9,"6.1":1},"f-8":{"8.1":19,"8.2":4,"8.3":2},"f-3":{"3.4":21,"3.2":13,"3.1":5,"3.3":5,"3.5":3},"15":{"15.2":5,"15.1":5},"f-15":{"15.2":14,"15.1":4},"f-10":{"10.3":12,"10.2":14,"10.1":1},"f-20":{"20.1":7},"f-18":{"18.1":4,"18.2":2},"f-24":{"24.4":2,"24.2":9,"24.1":8,"24.3":3},"f-7":{"7.3":27,"7.1":6,"7.2":5},"f-27":{"27.1":6,"27.2":3},"f-14":{"14.2":8,"14.1":2},"f-28":{"28.2":11,"28.1":3},"f-4":{"4.2":28,"4.1":5},"f-29":{"29.1":10},"f-23":{"23.1":10,"23.2":1}};
 const qbankN=u=>course==='alevel'?(QBANK[u.id]||0):(course==='igcse'?(QBANK_IG[u.id]||0):0);
 function practiceStrip(u){
-  if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!qbankN(u))) return '';
-  const ex=u.x.ex||[], qn=qbankN(u);
+  const qn=course==='igcse'?0:qbankN(u);
+  if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!qn)) return '';
+  const ex=u.x.ex||[];
   const exBtn=e=>`<a class="btn small gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`;
   const g=[];
   if(ex.length){
