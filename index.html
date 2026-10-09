@@ -2829,8 +2829,8 @@ function unitBody(u){
         const oi=u.o.indexOf(o)+1, v=(u.x&&u.x.sv&&u.x.sv[oi])||[];
         const oq=course==='igcse'?((QBANK_IGO[u.id]||{})[o.n]||0):0;
         const eq=oq?`<a class="btn gold" href="questions-igcse.html#${u.id}/${o.t.toLowerCase().replace(/ˣ/g,'x').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}">Exam questions (${oq})</a>`:'';
-        if(v.length||eq) h+=`<div class="acts">${v.map(x=>`<a class="btn primary vid" href="${YT}${esc(x[1])}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> ${esc(x[0])}</a>`).join('')}${eq}</div>`;
-        h+= o.gs.length? o.gs.map(g=>{const [code,name,ssid,vid]=g.g; return `<div class="grp"><div class="grow"><div class="gname">${esc(name)}</div><span class="links">${vid?`<a class="btn primary vid" href="${YT}${esc(vid)}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> Watch video</a>`:''}${ssid?`<a class="btn primary" href="${DF}${ssid}" target="_blank" rel="noopener">Practice questions</a>`:''}</span></div></div>`}).join('') : `<p class="none">No Dr Frost practice for this one. Use the video, your book and class notes.</p>`;
+        if(v.length) h+=`<div class="acts">${v.map(x=>`<a class="btn primary vid" href="${YT}${esc(x[1])}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> ${esc(x[0])}</a>`).join('')}</div>`;
+        h+= o.gs.length? o.gs.map(g=>{const [code,name,ssid,vid]=g.g; return `<div class="grp"><div class="grow"><div class="gname">${esc(name)}</div><span class="links">${vid?`<a class="btn primary vid" href="${YT}${esc(vid)}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> Watch video</a>`:''}${ssid?`<a class="btn primary" href="${DF}${ssid}" target="_blank" rel="noopener">Practice questions</a>`:''}${eq}</span></div></div>`}).join('') : `<p class="none">No Dr Frost practice for this one. Use the video, your book and class notes.</p>${eq?`<div class="acts">${eq}</div>`:''}`;
       } else h+= o.gs.length? o.gs.map(g=>groupHTML(g)).join('') : `<p class="none">No Dr Frost practice for this one. Use your book and class notes.</p>`;
       h+='</article>';
     });
