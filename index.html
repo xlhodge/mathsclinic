@@ -416,6 +416,19 @@ nav .shtag{font-size:.64rem;font-weight:700;color:var(--accent);border:1px solid
 .ccard a.yr:hover{border-left-color:var(--c)}
 .ccard a.yr span:not(.yname):not(.prog3){transition:transform .15s}
 .ccard a.yr:hover > span:nth-child(2){transform:translateX(3px);color:var(--c)}
+.pptiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:6px}
+.pptile{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.pptile:hover{border-color:var(--c);transform:translateY(-1px)}
+.ppk{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--c)}
+.ppt{font-size:1.15rem;font-weight:800}
+.pps{font-size:.82rem;color:var(--muted)}
+.ppbarr{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin:8px 0 2px}
+.ppbarr i{display:block;height:100%;background:var(--g)}
+.ppd{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--muted)}
+.ppd b{font-size:1.1rem;color:var(--c)}
+.ppib{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.ppib b{color:var(--ink)}
+@media (max-width:720px){.pptiles{grid-template-columns:minmax(0,1fr)}}
 .ppsec{border-radius:16px;border:1px solid color-mix(in srgb,var(--hl) 70%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--hl) 12%,var(--surface)),var(--surface) 140px)}
 .ppsec .steph{font-size:1.3rem}
 @media (max-width:720px){
@@ -2941,8 +2954,12 @@ function ctot(s){ if(!(s.r+s.a+s.g)) return ''; const pc=Math.round(100*s.g/s.t)
   const txt=pc>=1?`${pc}% confident`:(s.g?`${s.g} topic${s.g>1?'s':''} confident`:`${s.r+s.a+s.g} topic${s.r+s.a+s.g>1?'s':''} rated`);
   return `<span class="ctot">${txt}</span>`; }
 function ppSection(){
-  const rows=DATA.filter(c=>PP[c.key]).map(c=>`<div class="pprow c-${esc(c.key)}"><span class="ppname">${esc(c.label)}</span><div>${PP[c.key].links.length?`<div class="pplinks">${PP[c.key].links.map(l=>`<a class="btn small" href="${l[0]}" target="_blank" rel="noopener">${esc(l[1])} &#8599;</a>`).join('')}</div>`:''}<p>${esc(PP[c.key].note)}</p></div></div>`).join('');
-  return `<section class="ppsec"><h2 class="steph">Full past papers</h2><p class="ppintro">For when you have revised the topics: do whole papers timed, then mark them.</p>${rows}</section>`; }
+  let done=[]; try{ done=JSON.parse(store.get('mc-papers-done')||'[]'); }catch(e){}
+  const n=k=>done.filter(x=>x.startsWith(k+'|')).length;
+  const tiles=[['igcseH','igcse','IGCSE','Higher',54,'1H and 2H'],['igcseF','igcse','IGCSE','Foundation',54,'1F and 2F'],['alevel','alevel','A Level','OCR MEI',27,'Papers 1, 2 and 3']];
+  const h=tiles.map(([k,c,course,tier,t,sub])=>{ const d=n(k), pc=Math.round(100*d/t);
+    return `<a class="pptile c-${c}" href="papers.html#${k}"><span class="ppk">${esc(course)}</span><span class="ppt">${esc(tier)}</span><span class="pps">${t} papers · ${esc(sub)}</span><span class="ppbarr"><i style="width:${pc}%"></i></span><span class="ppd">${d?`${d} of ${t} done`:'None ticked yet'}<b aria-hidden="true">&rarr;</b></span></a>`; }).join('');
+  return `<section class="ppsec"><h2 class="steph">Full past papers</h2><p class="ppintro">Revised the topics? Do whole papers timed, mark them with the mark scheme, then tick them off.</p><div class="pptiles">${h}</div><p class="ppib"><b>IB:</b> full IB papers are not free online. Your teacher will give you past papers in class; use the exam questions in each chapter until then.</p></section>`; }
 function renderHome(){
   const last=store.get('last'); let cont='';
   if(last){ const [k,n]=last.split(':'); const b=C[k]&&BLOCKS(k)[n-1]; if(b){ const s=blockStats(k,b);
