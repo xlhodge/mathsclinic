@@ -2911,14 +2911,14 @@ function practiceStrip(u){
 
 /* ----- full past papers, per course ----- */
 const PP={
-  igcse:{note:'From Physics & Maths Tutor: each page has Higher and Foundation papers with mark schemes. Do them timed once you have revised the topics, then mark them.',links:[
-    ['https://www.physicsandmathstutor.com/past-papers/gcse-maths/edexcel-igcse-a-paper-1/','IGCSE Maths: Paper 1'],
-    ['https://www.physicsandmathstutor.com/past-papers/gcse-maths/edexcel-igcse-a-paper-2/','IGCSE Maths: Paper 2']]},
-  alevel:{note:'From Physics & Maths Tutor: all three H640 papers with mark schemes. Do whole papers timed in the run-up to mocks and exams.',links:[
-    ['https://www.physicsandmathstutor.com/maths-revision/a-level-ocr-mei/papers/','OCR MEI A Level papers']]},
+  igcse:{note:'Every 4MA1 paper since 2018, Higher and Foundation, with mark schemes. Do them timed once you have revised the topics, mark them, then tick them off.',links:[
+    ['papers.html#igcseH','IGCSE Higher papers'],
+    ['papers.html#igcseF','IGCSE Foundation papers']]},
+  alevel:{note:'Every H640 paper since 2018 with mark schemes. Do whole papers timed in the run-up to mocks and exams, then tick them off.',links:[
+    ['papers.html#alevel','OCR MEI A Level papers']]},
   ib:{note:'Full IB papers are not free online. Your teacher will give you past papers in class; use the exam questions in each chapter until then.',links:[]}
 };
-function ppLinks(k,sm){ return (PP[k].links||[]).map(l=>`<a class="btn gold${sm?' small':''}" href="${l[0]}" target="_blank" rel="noopener">${esc(l[1])} &#8599;</a>`).join(''); }
+function ppLinks(k,sm){ return (PP[k].links||[]).map(l=>`<a class="btn gold${sm?' small':''}" href="${l[0]}">${esc(l[1])} &rarr;</a>`).join(''); }
 function ppCard(k){ if(!PP[k]) return ''; return `<div class="pp"><b>Full past papers</b>${PP[k].links.length?`<div class="xb">${ppLinks(k)}</div>`:''}<p>${esc(PP[k].note)}</p></div>`; }
 function ppBar(k){ if(!PP[k]||!PP[k].links.length) return ''; return `<div class="ppbar"><b>Full past papers:</b><span class="xb">${ppLinks(k,1)}</span></div>`; }
 function setCourse(k){ course=k; }
