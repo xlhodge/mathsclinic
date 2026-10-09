@@ -6,7 +6,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>Past exam questions · Maths Clinic</title>
-<meta name="description" content="Edexcel International GCSE Mathematics A (4MA1) past questions sorted by chapter and skill, one at a time, with mark schemes. Maths Clinic, by Mr Hodkinson.">
+<meta name="description" content="Edexcel IGCSE Mathematics A (4MA1) past questions sorted by chapter and skill, one at a time, with mark schemes. Maths Clinic, by Mr Hodkinson.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
@@ -87,7 +87,7 @@ footer{max-width:1000px;margin:0 auto;border-top:1px solid var(--line);padding-b
 </header>
 <main>
   <p class="crumbs"><a id="back" href="./">&larr; Back to the chapter</a></p>
-  <p class="kicker">IGCSE Mathematics A (4MA1) · Past papers, Higher and Foundation</p>
+  <p class="kicker">Edexcel IGCSE Mathematics A (4MA1) · Past papers, Higher and Foundation</p>
   <h2 id="title">Past exam questions</h2>
   <p class="lead" id="lead"></p>
   <section class="skillbox"><p class="sblbl">Pick a skill</p><div class="chips" id="skills" role="group" aria-label="Choose a skill"></div></section>
@@ -118,7 +118,7 @@ function render(){
   const ys=all.map(q=>+q.src.match(/\d{4}/)[0]), yrs=[Math.min(...ys),Math.max(...ys)];
   $('#title').textContent=CH[ch].name;
   $('#back').href='./#igcse-'+ch; $('#back').textContent='← Back to '+CH[ch].short;
-  $('#lead').innerHTML=`<b>${all.length} exam questions</b> from Edexcel 4MA1 papers, ${yrs[0]} to ${yrs[1]}.${done?` You've done <b>${done}</b>.`:''}`;
+  $('#lead').innerHTML=`<b>${all.length} exam questions</b> from Edexcel IGCSE papers, ${yrs[0]} to ${yrs[1]}.${done?` You've done <b>${done}</b>.`:''}`;
   const main=CH[ch].sk.filter(s=>s!=='Long questions'), lq=CH[ch].sk.includes('Long questions');
   $('#skills').innerHTML=main.map(s=>chip(s,inSkill(ch,s))).join('')+((lq||CH[ch].sk.length>1)?'<span class="sep" aria-hidden="true"></span>':'')+(lq?chip('Long questions',inSkill(ch,'Long questions')):'')+(CH[ch].sk.length>1?chip('all',all):'');
   if(!L.length){ $('#card').innerHTML='<p class="empty">No questions for this skill yet.</p>'; write(); return; }
