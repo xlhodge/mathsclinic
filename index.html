@@ -2879,9 +2879,11 @@ document.addEventListener('click',e=>{
 });
 
 const QBANK={'p-1':13,'p-2':29,'p-3':22,'p-4':23,'p-5':40,'p-6':36,'p-7':26,'p-8':28,'p-9':12,'p-10':44,'p-11':31,'p-12':5,'p-13':42,'p-14':5,'p-15':23,'p-16':4,'p-17':13,'p-18':5,'p-19':10,'p-20':10,'p-21':3,'r-1':10,'r-2':20,'r-3':43,'r-4':36,'r-5':38,'r-6':19,'r-7':35,'r-8':26,'r-9':34,'r-10':44,'r-11':19,'r-12':5,'r-13':21,'r-14':25,'r-15':5,'r-16':10,'r-17':12,'r-18':8,'r-19':7,'r-20':8,'r-21':8,'r-22':6};
+const QBANK_IG={'1':24,'2':13,'3':8,'4':3,'5':7,'6':3,'7':8,'8':1,'9':14,'10':6,'11':4,'12':8,'13':21,'14':14,'f-1':10,'f-2':13,'f-3':5,'f-5':8,'f-6':9,'f-8':2,'f-9':8,'f-10':2,'f-11':8,'f-12':11,'f-13':7,'f-15':3,'f-16':2,'f-17':3,'f-18':1,'15':4,'16a':11,'16b':13,'17':8,'18':10,'19':11,'20':7,'21':9,'f-19':6,'f-20':1,'f-21':7,'f-22':12,'f-24':2,'f-25':1,'f-26':7};
+const qbankN=u=>course==='alevel'?(QBANK[u.id]||0):(course==='igcse'?(QBANK_IG[u.id]||0):0);
 function practiceStrip(u){
-  if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!(course==='alevel'&&QBANK[u.id]))) return '';
-  const ex=u.x.ex||[], fpm=String(u.id).startsWith('fpm'), qn=course==='alevel'?QBANK[u.id]:0;
+  if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!qbankN(u))) return '';
+  const ex=u.x.ex||[], fpm=String(u.id).startsWith('fpm'), qn=qbankN(u);
   const exBtn=e=>`<a class="btn small gold" href="${e[0]}" target="_blank" rel="noopener">${esc(e[1])} &#8599;</a>`;
   const g=[];
   if(ex.length){
@@ -2889,7 +2891,7 @@ function practiceStrip(u){
     const body=course==='igcse'&&ex.length>1?`<details class="exq"><summary class="btn small gold">Choose a topic (${ex.length}) &#9662;</summary><div class="exq-l">${ex.map(exBtn).join('')}</div></details>`:ex.map(exBtn).join('');
     g.push(`<span class="xg">${lbl?`<small>${lbl}</small>`:''}${body}</span>`);
   }
-  if(qn) g.push(`<span class="xg"><small>Past papers</small><a class="btn small gold" href="questions.html#${u.id}">${qn} questions &rarr;</a></span>`);
+  if(qn) g.push(`<span class="xg"><small>Past papers</small><a class="btn small gold" href="${course==='igcse'?'questions-igcse.html':'questions.html'}#${u.id}">${qn} questions &rarr;</a></span>`);
   if(u.x.pdf) g.push(`<span class="xg"><a class="btn small primary" href="pdf/${u.x.pdf}" target="_blank" rel="noopener">Exercise sheets (PDF)</a></span>`);
   return `<section class="xbar" aria-label="Exam questions for this chapter"><b>Exam questions</b>${g.join('')}</section>`;
 }
