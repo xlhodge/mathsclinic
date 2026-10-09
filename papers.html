@@ -13,8 +13,8 @@
 <style>
 
 :root{--bg:#F6F7F4;--surface:#FFFFFF;--ink:#18212F;--muted:#5A6474;--line:#DEE2E6;--accent:#2946C4;--accent-ink:#FFFFFF;--accent-soft:#E7EBFB;--hl:#F7DC5C;--hl-ink:#3A3000;--g:#2E9D5B;--paper:#FFFFFF;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11151C;--surface:#1A2029;--ink:#E7EAF0;--muted:#9AA3B2;--line:#2C3441;--accent:#8EA3FF;--accent-ink:#0E1430;--accent-soft:#232C4A;--hl:#C9AE2E;--hl-ink:#1D1800;--g:#5CC88A;--paper:#F3F3EF;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#11151C;--surface:#1A2029;--ink:#E7EAF0;--muted:#9AA3B2;--line:#2C3441;--accent:#8EA3FF;--accent-ink:#0E1430;--accent-soft:#232C4A;--hl:#C9AE2E;--hl-ink:#1D1800;--g:#5CC88A;--paper:#F3F3EF;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11151C;--surface:#1A2029;--ink:#E7EAF0;--muted:#9AA3B2;--line:#2C3441;--accent:#8EA3FF;--accent-ink:#0E1430;--accent-soft:#232C4A;--hl:#C9AE2E;--hl-ink:#1D1800;--g:#2E9D5B;--paper:#F3F3EF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11151C;--surface:#1A2029;--ink:#E7EAF0;--muted:#9AA3B2;--line:#2C3441;--accent:#8EA3FF;--accent-ink:#0E1430;--accent-soft:#232C4A;--hl:#C9AE2E;--hl-ink:#1D1800;--g:#2E9D5B;--paper:#F3F3EF;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;padding-inline:16px}
@@ -34,11 +34,14 @@ main{max-width:1000px;margin:0 auto;padding-block:22px 60px}
 .kicker{margin:0;color:var(--muted);font-size:.9rem}
 h2{margin:2px 0 4px;font-size:1.7rem;line-height:1.15}
 .lead{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.c-igcse{--c:#2946C4}.c-alevel{--c:#7B3FB0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .c-igcse{--c:#8EA3FF}:root:not([data-theme="light"]) .c-alevel{--c:#C49BF0}}
+:root[data-theme="dark"] .c-igcse{--c:#8EA3FF}:root[data-theme="dark"] .c-alevel{--c:#C49BF0}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 12px}
 .tab{display:inline-flex;gap:8px;align-items:baseline;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px;font-weight:700;font-size:.92rem;text-decoration:none;color:var(--ink)}
 .tab span{font-weight:400;font-size:.78rem;color:var(--muted)}
-.tab:hover{border-color:var(--accent)}
-.tab[aria-current="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tab:hover{border-color:var(--c,var(--accent))}
+.tab[aria-current="true"]{background:var(--c,var(--accent));border-color:var(--c,var(--accent));color:var(--accent-ink)}
 .tab[aria-current="true"] span{color:var(--accent-ink);opacity:.85}
 .progrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:0 0 12px}
 #prog{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:.95rem;color:var(--muted)}
@@ -2443,7 +2446,7 @@ function count(k,set){ const c=COURSES[k]; let n=0,t=0; c.series.forEach(s=>c.pa
 function render(){
   const c=COURSES[course], set=ticks(), [n,t]=count(course,set);
   document.title=`${c.tab} past papers · Maths Clinic`;
-  $('#tabs').innerHTML=KEYS.map(k=>`<a href="#${k}" class="tab" aria-current="${k===course}">${esc(COURSES[k].tab)}<span>${count(k,set)[0]}/${count(k,set)[1]}</span></a>`).join('');
+  $('#tabs').innerHTML=KEYS.map(k=>`<a href="#${k}" class="tab c-${k.startsWith('igcse')?'igcse':k}" aria-current="${k===course}">${esc(COURSES[k].tab)}<span>${count(k,set)[0]}/${count(k,set)[1]}</span></a>`).join('');
   $('#kicker').textContent=c.kicker;
   $('#lead').textContent=c.lead;
   $('#sharedbar').hidden=!shared;
