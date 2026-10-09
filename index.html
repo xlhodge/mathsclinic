@@ -2878,7 +2878,7 @@ document.addEventListener('click',e=>{
   const a=e.target.closest('.kwall'); if(a){ const open=a.textContent==='Show all'; a.closest('.kw').querySelectorAll('.kwc').forEach(x=>x.setAttribute('aria-expanded',String(open))); a.textContent=open?'Hide all':'Show all'; }
 });
 
-const QBANK={'p-1':12,'p-2':26,'p-3':20,'p-4':22,'p-5':36,'p-6':29,'p-7':25,'p-8':25,'p-9':11,'p-10':36,'p-11':28,'p-12':3,'p-13':36,'p-14':5,'p-15':23,'p-16':4,'p-17':13,'p-18':5,'p-19':10,'p-20':10,'p-21':3,'r-1':9,'r-2':18,'r-3':36,'r-4':28,'r-5':36,'r-6':18,'r-7':30,'r-8':23,'r-9':30,'r-10':38,'r-11':17,'r-12':3,'r-13':18,'r-14':21,'r-15':5,'r-16':10,'r-17':12,'r-18':8,'r-19':7,'r-20':8,'r-21':8,'r-22':6};
+const QBANK={'p-1':13,'p-2':29,'p-3':22,'p-4':23,'p-5':40,'p-6':36,'p-7':26,'p-8':28,'p-9':12,'p-10':44,'p-11':31,'p-12':5,'p-13':42,'p-14':5,'p-15':23,'p-16':4,'p-17':13,'p-18':5,'p-19':10,'p-20':10,'p-21':3,'r-1':10,'r-2':20,'r-3':43,'r-4':36,'r-5':38,'r-6':19,'r-7':35,'r-8':26,'r-9':34,'r-10':44,'r-11':19,'r-12':5,'r-13':21,'r-14':25,'r-15':5,'r-16':10,'r-17':12,'r-18':8,'r-19':7,'r-20':8,'r-21':8,'r-22':6};
 function practiceStrip(u){
   if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!(course==='alevel'&&QBANK[u.id]))) return '';
   const ex=u.x.ex||[], fpm=String(u.id).startsWith('fpm'), qn=course==='alevel'?QBANK[u.id]:0;
