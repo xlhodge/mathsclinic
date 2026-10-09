@@ -160,6 +160,10 @@ nav a.test .n{min-width:auto}
 /* exam questions bar (slim) */
 .xbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--hl);border-radius:12px;padding:8px 16px;margin:0 0 18px}
 .xbar>b{font-size:1rem;margin-right:auto}
+.oq{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;margin:10px 0 4px;padding:8px 14px;border:1px solid var(--line);border-left:5px solid var(--hl);border-radius:10px;background:var(--surface);color:inherit;text-decoration:none}
+.oq b{font-size:.95rem}
+.oq span{background:var(--hl);color:var(--hl-ink);font-weight:700;border-radius:8px;padding:4px 12px;font-size:.88rem}
+.oq:hover span{filter:brightness(.95)}
 .xg{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
 .xg small{color:var(--muted);font-size:.8rem}
 .xbar .exq[open]{flex-basis:100%}
@@ -2825,6 +2829,10 @@ function unitBody(u){
     u.o.forEach(o=>{
       const key=`${course}-${u.id}-${o.n}`;
       h+=`<article class="obj"><div class="objtop"><span class="num">${esc(o.n)}</span><div class="objtext">${esc(o.t)}<div class="meta">${o.f?`<span class="chip${course==='ib'?' hl':''}">${esc(cur().flag)}</span>`:''}${o.r?`<span class="ref">Book: ${esc(o.r)}</span>`:''}</div></div>${ragHTML(key)}</div>`;
+      if(course==='igcse'){
+        const oq=(QBANK_IGO[u.id]||{})[o.n];
+        if(oq) h+=`<a class="oq" href="questions-igcse.html#${u.id}/${o.t.toLowerCase().replace(/ˣ/g,'x').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}"><b>Exam questions</b><span>${oq} Edexcel question${oq===1?'':'s'} on this &rarr;</span></a>`;
+      }
       if(course==='ib'||course==='igcse'){
         const oi=u.o.indexOf(o)+1, v=(u.x&&u.x.sv&&u.x.sv[oi])||[];
         if(v.length) h+=`<div class="acts">${v.map(x=>`<a class="btn primary vid" href="${YT}${esc(x[1])}" target="_blank" rel="noopener"><span aria-hidden="true">&#9654;</span> ${esc(x[0])}</a>`).join('')}</div>`;
@@ -2880,6 +2888,7 @@ document.addEventListener('click',e=>{
 
 const QBANK={'p-1':12,'p-2':31,'p-3':21,'p-4':23,'p-5':40,'p-6':33,'p-7':26,'p-8':28,'p-9':12,'p-10':38,'p-11':30,'p-12':5,'p-13':41,'p-14':6,'p-15':21,'p-16':9,'p-17':6,'p-18':5,'p-19':10,'p-20':10,'p-21':3,'r-1':11,'r-2':20,'r-3':42,'r-4':35,'r-5':41,'r-6':20,'r-7':35,'r-8':26,'r-9':36,'r-10':45,'r-11':20,'r-12':5,'r-13':20,'r-14':26,'r-15':7,'r-16':10,'r-17':9,'r-18':5,'r-19':10,'r-20':8,'r-21':8,'r-22':7};
 const QBANK_IG={'1':68,'2':33,'3':13,'4':19,'5':26,'6':10,'7':12,'8':2,'9':29,'10':18,'11':15,'12':21,'13':58,'14':24,'f-1':121,'f-2':60,'f-3':45,'f-5':35,'f-6':46,'f-7':34,'f-8':21,'f-9':33,'f-10':24,'f-11':36,'f-12':57,'f-13':35,'f-14':10,'f-15':16,'f-16':22,'f-17':27,'f-18':5,'15':10,'16a':35,'16b':40,'17':13,'18':15,'19':27,'20':12,'21':15,'f-19':22,'f-20':5,'f-21':28,'f-22':64,'f-24':19,'f-25':4,'f-26':52,'f-27':9,'f-28':12,'f-4':29,'f-29':10,'f-23':9};
+const QBANK_IGO={"13":{"13.2":4,"13.6":12,"13.5":12,"13.3":11,"13.4":15,"13.7":4},"f-13":{"13.4":16,"13.3":15,"13.1":3,"13.2":1},"f-2":{"2.4":14,"2.3":29,"2.2":14,"2.1":3},"f-6":{"6.1":38,"6.2":8},"2":{"2.1":28,"2.2":3,"2.3":2},"16a":{"16a.1":20,"16a.3":1,"16a.2":10,"16a.6":4},"12":{"12.1":11,"12.3":6,"12.2":4},"14":{"14.1":6,"14.3":10,"14.2":8},"1":{"1.1":27,"1.2":4,"1.3":24,"1.4":13},"f-12":{"12.3":19,"12.1":28,"12.2":10},"f-19":{"19.1":22},"f-22":{"22.4":2,"22.3":33,"22.1":19,"22.2":10},"f-9":{"9.3":19,"9.2":5,"9.1":9},"f-21":{"21.1":25,"21.2":3},"4":{"4.1":1,"4.2":18},"5":{"5.2":14,"5.1":10,"5.3":2},"11":{"11.2":4,"11.7":2,"11.6":2,"11.8":2,"11.5":1,"11.4":2,"11.3":2},"17":{"17.3":8,"17.4":5},"16b":{"16b.1":9,"16b.6":6,"16b.5":4,"16b.4":9,"16b.3":10,"16b.2":2},"10":{"10.4":6,"10.3":3,"10.2":9},"20":{"20.4":11,"20.2":1},"19":{"19.3":4,"19.4":7,"19.2":6,"19.5":1,"19.6":2,"19.1":7},"3":{"3.2":10,"3.1":3},"f-1":{"1.10":14,"1.13":29,"1.9":11,"1.11":6,"1.3":14,"1.2":19,"1.8":9,"1.7":2,"1.5":5,"1.1":4,"1.4":6,"1.14":1,"1.6":1},"8":{"8.1":2},"f-25":{"25.1":4},"f-26":{"26.4":14,"26.2":17,"26.3":9,"26.6":7,"26.1":5},"f-11":{"11.2":13,"11.1":23},"f-5":{"5.4":16,"5.3":3,"5.1":5,"5.2":11},"7":{"7.2":11,"7.1":1},"18":{"18.4":3,"18.8":3,"18.2":1,"18.3":1,"18.6":3,"18.5":1,"18.7":3},"9":{"9.5":6,"9.1":9,"9.2":11,"9.4":2,"9.3":1},"21":{"21.6":3,"21.4":4,"21.5":4,"21.2":4},"f-17":{"17.3":2,"17.2":10,"17.4":5,"17.1":10},"f-16":{"16.5":7,"16.1":1,"16.3":7,"16.2":3,"16.6":4},"6":{"6.2":9,"6.1":1},"f-8":{"8.1":17,"8.2":4},"f-3":{"3.4":21,"3.2":12,"3.1":5,"3.3":5,"3.5":2},"15":{"15.2":5,"15.1":5},"f-15":{"15.2":12,"15.1":4},"f-10":{"10.3":10,"10.2":13,"10.1":1},"f-20":{"20.1":5},"f-18":{"18.1":4,"18.2":1},"f-24":{"24.4":2,"24.2":7,"24.1":8,"24.3":2},"f-7":{"7.3":24,"7.1":6,"7.2":4},"f-27":{"27.1":6,"27.2":3},"f-14":{"14.2":8,"14.1":2},"f-28":{"28.2":9,"28.1":3},"f-4":{"4.2":24,"4.1":5},"f-29":{"29.1":10},"f-23":{"23.1":9}};
 const qbankN=u=>course==='alevel'?(QBANK[u.id]||0):(course==='igcse'?(QBANK_IG[u.id]||0):0);
 function practiceStrip(u){
   if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!qbankN(u))) return '';
