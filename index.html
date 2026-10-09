@@ -2878,7 +2878,7 @@ document.addEventListener('click',e=>{
   const a=e.target.closest('.kwall'); if(a){ const open=a.textContent==='Show all'; a.closest('.kw').querySelectorAll('.kwc').forEach(x=>x.setAttribute('aria-expanded',String(open))); a.textContent=open?'Hide all':'Show all'; }
 });
 
-const QBANK={'p-1':8,'p-2':22,'p-3':17,'p-4':20,'p-5':27,'p-6':22,'p-7':22,'p-8':23,'p-9':9,'p-10':27,'p-11':20,'p-13':27,'r-1':9,'r-2':10,'r-3':24,'r-4':23,'r-5':29,'r-6':12,'r-7':21,'r-8':16,'r-9':24,'r-10':30,'r-11':11,'r-12':1,'r-13':12,'r-14':11};
+const QBANK={'p-1':8,'p-2':22,'p-3':17,'p-4':20,'p-5':27,'p-6':22,'p-7':22,'p-8':23,'p-9':9,'p-10':27,'p-11':20,'p-13':27,'r-1':8,'r-2':10,'r-3':24,'r-4':20,'r-5':29,'r-6':12,'r-7':20,'r-8':16,'r-9':24,'r-10':30,'r-11':11,'r-12':1,'r-13':12,'r-14':11};
 function practiceStrip(u){
   if(!u.x||(!u.x.pdf&&!(u.x.ex||[]).length&&!(course==='alevel'&&QBANK[u.id]))) return '';
   const ex=u.x.ex||[], fpm=String(u.id).startsWith('fpm'), qn=course==='alevel'?QBANK[u.id]:0;
